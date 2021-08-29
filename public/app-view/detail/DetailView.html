@@ -1,0 +1,433 @@
+<!-- selection-section starts-->
+    <div class="select_sec" ng-controller = "DetailController" >
+      <div class="container">
+          <div class="select_inr">
+            <div class="select_item" ng-class="{select_three: vm.country != 'United States' && vm.country != 'Canada' && vm.country != 'Country'}">
+                <div class="select_area">
+                  <select name="number" class="block" ng-model="vm.country" ng-options="x for x in countries"  ng-change="changeStateListInCtrl(vm.country);vm.state = states[0];vm.region = regions[0];" ng-init = "changeStateListInCtrl(vm.country);">
+                  </select>
+                </div>
+                <div class="select_area" ng-show ="vm.country == 'United States' || vm.country == 'Canada' || vm.country == 'Country'">
+                  <select name="number" class="block" ng-model="vm.state" ng-options="x for x in states" ng-change="changeListInCtrl(vm.state);" ng-init = "changeListInCtrl(vm.state)">
+                  </select>
+                </div>
+                <div class="select_area">
+                  <select name="number" id="region" class="block" ng-model="vm.region" ng-options="x for x in regions" ng-init="vm.region = vm.region || 'Region'">
+                  </select>
+                </div>
+                <div class="select_area">
+                  <select name="number" id="category" class="block" ng-model="vm.category" ng-options="x for x in categories" ng-init="vm.category = vm.category || 'Category'">
+                  </select>
+                </div>
+                <div class="select_sbt">
+                   <input type="submit" placeholder="Submit" ng-click ="vm.search()">
+                </div>
+                <div ng-show = "vm.savedPreference == true" class="loc_block">
+                  <a href="" ng-click="vm.unlockPreference()"><i class="fa fa-lock"></i></a>
+                </div>
+                <div ng-hide = "vm.savedPreference == true" class="unloc_block">
+                  <a href="" ng-click="vm.lockPreference()"><i class="fa fa-unlock"></i></a>
+                </div>
+            </div>
+            <div class="add_post post_bk pages_button" ng-if="windowWidth > 991 && isLoggedIn">
+                <input type="submit" value="LOG-OUT" ng-click="vm.logout()" style="background: #42a2e8; border: #f80101;">
+            </div>
+            <div class="add_post post_bk login_signup pages_button" ng-if="windowWidth > 991 && !isLoggedIn">
+              <input type="submit" value="LOG-IN/SIGN-UP" ng-click="vm.login()" style="background: #42a2e8; border: #f80101;">
+            </div>
+            <div class="add_post post_bk pages_button" ng-if="windowWidth > 991">
+              <input type="submit" value="PAGES" ng-click="vm.pages()" style="background: #f80101; border: #f80101;">
+            </div>
+
+            <div class="add_post post_bk">
+              <input type="submit" value="Post an AD" ng-click="vm.post()">
+            </div>
+            <div class="add_post post_bk pages_button" ng-if="windowWidth < 991">
+              <input type="submit" value="PAGES" ng-click="vm.pages()" style="background: #f80101; border: #f80101;">
+            </div>
+            <div class="add_post post_bk login_signup pages_button" ng-if="windowWidth < 991 && !isLoggedIn">
+              <input type="submit" value="LOG-IN/SIGN-UP" ng-click="vm.login()" style="background: #42a2e8; border: #f80101;">
+            </div>
+            <div class="add_post post_bk pages_button" ng-if="windowWidth < 991 && isLoggedIn">
+                <input type="submit" value="LOG-OUT" ng-click="vm.logout()" style="background: #42a2e8; border: #f80101;">
+            </div>
+          </div>
+      </div>
+    </div>
+    <!-- selection-section ends-->
+
+    <!-- gallery cnt-->
+
+    <div class="gallery_cnt" ng-controller = "DetailController" ng-init = "initController();">
+      <div class="container">
+         <div class="bread_cnt">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item" ng-if ="country"><a href="" ng-click="vm.searchFilter(country,'State','Region','Category')">{{country}}</a></li>
+              <li class="breadcrumb-item" ng-if ="state && (country == 'United States' || country == 'Canada')"><a href="" ng-click="vm.searchFilter(country,state,'Region','Category')">{{state}}</a></li>
+              <li class="breadcrumb-item" ng-if ="region"><a href="" ng-click="vm.searchFilter(country,state,region,'Category')">{{region}}</a></li>
+               <li class="breadcrumb-item" ng-if ="category"><a href="" ng-click="vm.searchFilter(country,state,region,category)">{{category}}</a></li>
+            </ol>
+        </div>
+        <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+        <div class="gallery_det">
+          <!-- <h4 ng-if="status === 'flagged'">This post has been flagged for review</h4> -->
+          <h2>{{title || message}}<span ng-if= " location || age ">- </span><span ng-if="age">{{age}}</span><span ng-if="location"> ({{location}})</span></h2>
+          <div>
+            <a href="" ng-if = "!isCurrentUser()" ng-click="openModal()">Reply</a>
+            <a style="margin-left: 5px;" href="" ng-if = "!isCurrentUser()" ng-click="openModal_flag()">Flag</a>
+            <!-- <a ng-if ="status === 'flagged'" style="margin-left: 5px;" href="">Flagged</a> -->
+            <a ng-if = "isCurrentUser()" style="margin-left: 5px;" href="edit/{{post_id}}">Edit</a>
+            <a ng-if = "isCurrentUser()" style="margin-left: 5px;" ng-click="delete()" href="">Delete</a>
+            <a href="" ng-if ="share == 'enabled'" style="margin-left: 5px;" ng-click="toggleShareButton();">Share</a>
+            <a href="" ng-click="openModal_subscribe()" style="background: none;"><h2 style="padding-top: 8px; color: gold;">★</h2></a>
+          </div>
+          <div ng-show="showShareButtons == true">
+            <a href="" class="fa fa-twitter"
+            socialshare
+            socialshare-provider="twitter"
+            socialshare-text="{{title}}"
+            socialshare-hashtags="healthyflingpost"
+            socialshare-url="{{currentPath}}">
+            </a>
+            <a href="" class="fa fa-facebook"
+            socialshare
+            socialshare-provider="facebook"
+            socialshare-text="{{title}}"
+            socialshare-hashtags="healthyflingpost"
+            socialshare-url="{{currentPath}}">
+            </a>
+            <a href="" class="fa fa-linkedin"
+            socialshare
+            socialshare-provider="linkedin"
+            socialshare-text="{{title}}"
+            socialshare-description="{{message}}"
+            socialshare-source="healthyflingpost"
+            socialshare-url="{{currentPath}}">
+            </a>
+            <a href="" class="fa fa-reddit"
+            socialshare
+            socialshare-provider="reddit"
+            socialshare-text="{{title}}"
+            socialshare-url="{{currentPath}}">
+            </a>
+            <a href="" class="fa fa-google"
+            socialshare
+            socialshare-provider="google"
+            socialshare-url="{{currentPath}}">
+            </a>
+            <a href="" class="fa fa-pinterest"
+            socialshare
+            socialshare-provider="pinterest"
+            socialshare-text="{{title}}"
+            socialshare-url="{{currentPath}}">
+            </a>
+            <a href="" class="fa fa-tumblr"
+            socialshare
+            socialshare-provider="tumblr"
+            socialshare-text="{{title}}"
+            socialshare-url="{{currentPath}}">
+            </a>
+            <a href="" class="fa fa-xing"
+            socialshare
+            socialshare-provider="xing"
+            socialshare-text="{{title}}"
+            socialshare-url="{{currentPath}}">
+            </a>
+            <a href="mailto:?Subject={{title}}&body={{currentPath}}" class="fa fa-envelope"
+            socialshare
+            socialshare-provider="email"
+            socialshare-subject="{{title}}"
+            socialshare-body="{{currentPath}}">
+            </a>
+            <a href="" class="fa fa-whatsapp"
+            socialshare
+            socialshare-provider="whatsapp"
+            socialshare-text="{{title}}"
+            socialshare-url="{{currentPath}}">
+            </a>
+          </div>
+          <div class="row" ng-show="showEmail" >
+            <div class="col-md-7">
+              <div class="form-group">
+                <div class="col-md-9" style="padding: 0px;margin-bottom: 15px;">
+                  <input id="email" name="email" type="text" placeholder="Your email" class="form-control" ng-model="sender2">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery_slider clearfix" ng-if = "files.length > 0 || embed != '' || city || zip" style="padding-bottom:15px;">
+              <div class="galery_full">
+                <a ng-if="!showVideo && !showMap" href="{{mainImage.replace('/processed', '/files')}}" style="padding: 0;" target="_blank">
+                  <img ng-if = "mainImage.indexOf('iframe') == -1" src="{{mainImage}}" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+                </a>
+                <div ng-if="showVideo && !iframe && !showMap">
+                  <iframe width="560" height="315" src="{{embed}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div ng-if="showVideo && iframe && !showMap" ng-bind-html="embed | unsafe">
+                </div>
+                <div ng-if="!showVideo && !iframe && showMap && zip">
+                  <iframe width="560" height="315" frameborder="0" style="border:0" src="{{zipURL}}" allowfullscreen></iframe>
+                </div>
+                <div ng-if="!showVideo && !iframe && showMap && city">
+                  <iframe width="560" height="315" frameborder="0" style="border:0" src="{{cityURL}}" allowfullscreen></iframe>
+                </div>
+              </div>
+              <div class="gallery_thumb">
+                <ul>
+                    <li ng-repeat="item in files">
+                      <a href="" ng-click = "changeMainImage(item,false);" >
+                          <img src="{{ item.secure_url}}" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+                      </a>
+                    </li>
+                    <li ng-if = "embed != ''">
+                      <a href="" ng-click = "changeMainImage(embed,true);" >
+                          <img src="app-content/images/video-placeholder.png" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+                      </a>
+                    </li>
+                    <li ng-if = "city || zip">
+                      <a href="" ng-click = "changeMainImage(null,false,true);" >
+                        <img src="app-content/images/map.png" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+                      </a>
+                    </li>
+                </ul>
+              </div>
+          </div>
+          <div class="details_section">
+            <div class="det_item" ng-if = "mage">
+              <label>Age</label>
+              <span>{{mage}}</span>
+            </div>
+            <div class="det_item" ng-if = "bodytype">
+              <label>Body</label>
+              <span>{{bodytype}}</span>
+            </div>
+            <div class="det_item" ng-if = "height">
+              <label>Height</label>
+              <span>{{height}}</span>
+            </div>
+            <div class="det_item" ng-if = "mstatus">
+              <label>Status</label>
+              <span>{{mstatus}}</span>
+            </div>
+            <div class="det_item" ng-if = "haircolor">
+              <label>Hair</label>
+              <span>{{haircolor}}</span>
+            </div>
+            <div class="det_item" ng-if = "ethnicity">
+              <label>Ethnicity</label>
+              <span>{{ethnicity}}</span>
+            </div>
+            <div class="det_item" ng-if = "orientation">
+              <label>Orientation</label>
+              <span>{{orientation}}</span>
+            </div>
+            <div class="det_item" ng-if = "eyecolor">
+              <label>Eye</label>
+              <span>{{eyecolor}}</span>
+            </div>
+            <div class="det_item" ng-if = "gender">
+              <label>Gender</label>
+              <span>{{gender}}</span>
+            </div>
+            <div class="det_item" ng-if = "weight">
+              <label>Weight</label>
+              <span>{{weight}} LB</span>
+            </div>
+            <div class="det_item" ng-if = "bodyhair">
+              <label>Body Hair</label>
+              <span>{{bodyhair}}</span>
+            </div>
+            <div class="det_item" ng-if = "hivstatus">
+              <label>HIV</label>
+              <span>{{hivstatus}}</span>
+            </div>
+          </div>
+          <div class="created_section">
+            <h4 style="word-wrap: break-word;" ng-bind-html="message | unsafe"></h4>
+              <div class="created_tag_section">
+                <p style= "font-size: 15px;font-weight: 500;">Posted: <time am-time-ago="created"></time></p>
+                <p style= "font-size: 15px;font-weight: 500;">Expires: {{expires | amDifference : null : 'day' }} days</p>
+              </div>
+          </div>
+
+
+          <div ng-show = "windowWidth >= 752">
+            <div class="advertise">
+
+                <!-- JuicyAds v3.0 -->
+                <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+                <ins id="820410" data-width="728" data-height="102"></ins>
+                <script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':820410});</script>
+                <!--JuicyAds END-->
+
+            </div>
+          </div>
+
+          <div ng-show = "windowWidth < 752">
+            <div class="advertise">
+
+                <!-- JuicyAds v3.0 -->
+                <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+                <ins id="820411" data-width="300" data-height="62"></ins>
+                <script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':820411});</script>
+                <!--JuicyAds END-->
+
+            </div>
+          </div>
+
+          <div class="anonnymous_comment" ng-show = "anonymouscomment == 'enabled'">
+            <div class="anonnymous_typos" ng-if= "isLoggedIn && !isCurrentUser()">
+              <div class="comment_block">
+                <h4>Post a public comment for this post!</h4>
+                <div style="border: 2px solid #7e7e7e;">
+                  <div class="comment_field">
+                    <textarea style = "border: none;" class="cust_textarea" ng-model="commentmessage"></textarea>
+                  </div>
+                  <div class="file_upload" style="margin-left: 10px;margin-right: 10px;">
+                    <ul>
+                      <li>
+                        <a href="javascript:void(0)">
+                          <input type="file" class="cust_file wd_97" ng-file-model="vm.data.files" multiple style="color: transparent;" />
+                          <i class="fa fa-picture-o"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="" ng-click="toggleEmbedButton();">
+                          <i class="fa fa-file-video-o"></i>
+                        </a>
+                      </li>
+                    </ul>
+                    <div class="emmbed_video" style="background: #cdcbf5;clear: both;margin:0px;" ng-show = "showEmbedButtons == true">
+                      <input type="text" placeholder='<iframe src="embed_url"></iframe>' class="embeded_area" ng-model="commentembed">
+                    </div>
+                    <div class="file_results">
+                    <img ng-if = "loadingImage" src="app-content/images/imageLoader.gif" style="width: 100px;">
+                    <div class="upload_item" ng-repeat="file in imageList"><div style="position: relative"><img class='img-responsive' src={{file.secure_url}} ng-init = "stopLoader();"><img src="app-content/images/closeIcon.png" style="position: absolute; top: 4px; right: 5px; cursor: pointer;" ng-click = "deleteImage($index);"/></div></div>
+                  </div>
+                </div>
+              </div>
+              <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+              </div>
+              <div class="comments_counter" style="margin-top: 10px;">
+                <p><span>{{comments.length}}</span>comments</p>
+              </div>
+              <div class="notified_area">
+                <a href="" ng-click="toggleReplyNotify();">Get notified when someone comments to your comment(optional)</a>
+              </div>
+
+              <div class="comment_field" ng-show = "replyNotified == true">
+                <input id="email" name="email" type="text" placeholder="Your email" class="cust_email" ng-model="replyNotifiedEmail">
+              </div>
+              <!-- <div class="pdL">
+                  <div class="reply_item" vc-recaptcha key="'6LdK608UAAAAAIIPni45gUqw9p_vn4mLa_CtlSlv'" ng-model="captcha"></div>
+              </div> -->
+              <div class="cust_sbt_outer text-left">
+                 <input type="submit" value="Comment!" ng-click="addComment(post_id);">
+              </div>
+            </div>
+            <div class="reply_anonnymous">
+              <div class="reply_item_anony" ng-repeat="item in comments">
+                <span>Comment {{$index+1}}</span>
+                <a ng-if ="isLoggedIn" href="" ng-click="deleteComment(item._id)">Delete</a>
+                <a ng-if = "item.status == 'active'" href="" ng-click="openCommentsModal_flag(item)">Flag</a>
+                <a ng-if ="isLoggedIn" href="" ng-click="unflagComment(item._id)">Unflag</a>
+                <a ng-if ="isLoggedIn" href="" ng-click="openCommentModalPoster(item,{})">Reply</a>
+                <a ng-if ="!isLoggedIn" href="" ng-click="openCommentModal(item,{})">Reply</a>
+                <!-- <div class="likeDislike" style="margin-left: 5px;" ng-click="likeComment(item._id, false);"><img src="/app-content/images/like.png"> Like | {{item.like}}</div>
+                <div class="likeDislike" ng-click="dislikeComment(item._id, false);"><img src="/app-content/images/dislike.png"> | {{item.dislike}}</div> -->
+                <div class="reply_txt_anony">
+                  <h5 ng-show = "item.status == 'active'"> {{item.body}}</h5>
+                  <h5 ng-show = "item.status == 'inactive'" style="color: #8dc63f;"> The comment has been deleted</h5>
+                  <h5 ng-show = "item.status == 'flagged'" style="color: #8dc63f;"> The comment has been flagged</h5>
+                  <div class="upload_result clearfix" ng-if = "item.status == 'active' && (item.files.length > 0 || item.embed != '')">
+                    <div class="galery_full">
+                      <a href="{{commentsMainImage[$index].replace('/processed', '/files')}}" style="padding: 0;" target="_blank">
+                        <img ng-if = "commentsMainImage[$index].indexOf('iframe') == -1" src="{{commentsMainImage[$index]}}" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+                      </a>
+                        <div ng-if ="item.embed != '' && commentsMainImage[$index].indexOf('iframe') > -1" ng-bind-html="item.embed | unsafe"></div>
+                    </div>
+                    <div class="gallery_thumb">
+                      <ul>
+                          <li ng-repeat="file in item.files">
+                            <a ng-click = "changeCommentsMainImage(file.secure_url,$parent.$index);" href="">
+                                <img src="{{ file.secure_url}}" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+                            </a>
+                          </li>
+                          <li ng-if = "item.embed != ''">
+                            <a href="" ng-click = "changeCommentsMainImage(item.embed,$index);" >
+                                <img src="app-content/images/video-placeholder.png" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+                            </a>
+                          </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <p>Posted: <em><time am-time-ago="item.created"></time></em></p>
+                </div>
+
+                    <!-- <div class="upload_result">
+                  <div class="upload_block" ng-repeat="item in files">
+                    <a href="{{ item.secure_url}}" target="blank">
+                      <img src="{{ item.secure_url}}" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+                    </a>
+                  </div>
+                  <div class="upload_block" ng-bind-html="embed | unsafe">
+                  </div>
+                </div> -->
+                <div ng-if = "item.replies">
+                  <div class="posters_response" ng-repeat="reply in item.replies">
+                      <span style="color:black;font-size: 15px;font-weight: normal;">Reply {{$index+1}}</span>
+                      <span ng-if="reply.owner == 'poster'" style="font-size: 14px;font-weight: normal;">Posters response</span>
+                      <span style="color:#886c6a;font-size: 15px;font-weight: normal;">{{reply.responseLabel}}</span>
+                      <a ng-if ="isLoggedIn" href="" ng-click="deleteReply(reply._id)">Delete</a>
+                      <a ng-if = "reply.status == 'active'" href="" ng-click="openReplyModal_flag(reply)">Flag</a>
+                      <a ng-if ="isLoggedIn" href="" ng-click="unflagReply(reply._id)">Unflag</a>
+                      <a ng-if ="!isLoggedIn" href="" ng-click="openCommentModal(item,reply)">Reply</a>
+                      <a ng-if ="isLoggedIn" href="" ng-click="openCommentModalPoster(item,reply)">Reply</a>
+                      <!-- <div class="likeDislike" style="margin-left: 5px;" ng-click="likeComment(reply._id, true);"><img src="/app-content/images/like.png"> Like | {{reply.like}}</div>
+                      <div class="likeDislike" ng-click="dislikeComment(reply._id, true);"><img src="/app-content/images/dislike.png"> | {{reply.dislike}}</div> -->
+                      <div class="posters_inr">
+                        <h5 ng-show = "reply.status == 'active'" >{{reply.body}}</h5>
+                        <h5 ng-show = "reply.status == 'inactive'" style="color: #8dc63f;">The reply has been deleted</h5>
+                        <h5 ng-show = "reply.status == 'flagged'" style="color: #8dc63f;">The reply has been flagged</h5>
+
+                        <div class="upload_result clearfix" ng-if = "reply.status == 'active' && (reply.files.length > 0 || reply.embed != '')">
+                          <div class="galery_full">
+                            <a href="{{replyMainImage[$parent.$parent.$index][$index].replace('/processed', '/files')}}" style="padding: 0;" target="_blank">
+                              <img ng-show = "replyMainImage[$parent.$parent.$index][$index].indexOf('iframe') == -1" src="{{replyMainImage[$parent.$parent.$index][$index]}}" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+                            </a>
+                              <div ng-if ="reply.embed != '' && replyMainImage[$parent.$parent.$index][$index].indexOf('iframe') > -1" ng-bind-html="reply.embed | unsafe"></div>
+                          </div>
+                          <div class="gallery_thumb">
+                            <ul>
+                                <li ng-repeat="replyfile in reply.files">
+                                  <a ng-click = "changeReplyMainImage(replyfile.secure_url,$parent.$parent.$parent.$index, $parent.$index);" href="">
+                                      <img src="{{ replyfile.secure_url}}" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+                                  </a>
+                                </li>
+                                <li ng-if = "reply.embed != ''">
+                                  <a href="" ng-click = "changeReplyMainImage(reply.embed,$parent.$parent.$parent.$index, $index);" >
+                                      <img src="app-content/images/video-placeholder.png" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+                                  </a>
+                                </li>
+                            </ul>
+                          </div>
+                        </div>
+
+                        <p>posted <em><time am-time-ago="reply.created"></time></em></p>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="disabled_anonymous_text" ng-show = "anonymouscomment == 'disabled'">
+            <p><span><i class="fa fa-ban"></i></span>The poster has disabled public comments</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- gallery cnt ends-->

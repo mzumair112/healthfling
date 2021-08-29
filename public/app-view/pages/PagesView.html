@@ -1,0 +1,146 @@
+<div class="select_sec" ng-controller = "PagesController" >
+    <div class="container">
+        <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+        <div class="select_inr">
+            <div class="select_item" ng-class="{select_three: vm.country != 'United States' && vm.country != 'Canada' && vm.country != 'Country'}">
+                <div class="select_area">
+                    <select name="number" class="block" ng-model="vm.country" ng-options="x for x in countries" ng-change="changeStateListInCtrl(vm.country);vm.state = states[0];vm.region = regions[0];" ng-init = "changeStateListInCtrl(vm.country);">
+                    </select>
+                </div>
+                <div class="select_area" ng-show ="vm.country == 'United States' || vm.country == 'Canada' || vm.country == 'Country'">
+                    <select name="number" class="block" ng-model="vm.state" ng-options="x for x in states" ng-change="changeListInCtrl(vm.state);" ng-init = "changeListInCtrl(vm.state)">
+                    </select>
+                </div>
+                <div class="select_area">
+                    <select name="number" id="region" class="block" ng-model="vm.region" ng-options="x for x in regions" ng-init="vm.region = vm.region || 'Region'">
+                    </select>
+                </div>
+                <div class="select_area">
+                    <select name="number" id="category" class="block" ng-model="vm.category" ng-options="x for x in categories">
+                    </select>
+                </div>
+                <div class="select_sbt">
+                    <input type="submit" placeholder="Submit" ng-click ="vm.search()">
+                </div>
+                <div ng-show = "vm.savedPreference == true" class="loc_block">
+                    <a href="" ng-click="vm.unlockPreference()"><i class="fa fa-lock"></i></a>
+                </div>
+                <div ng-hide = "vm.savedPreference == true" class="unloc_block">
+                    <a href="" ng-click="vm.lockPreference()"><i class="fa fa-unlock"></i></a>
+                </div>
+            </div>
+            <div class="add_post post_bk pages_button" ng-if="windowWidth > 991 && isLoggedIn">
+                <input type="submit" value="LOG-OUT" ng-click="vm.logout()" style="background: #42a2e8; border: #f80101;">
+            </div>
+            <div class="add_post post_bk login_signup pages_button" ng-if="windowWidth > 991 && !isLoggedIn">
+              <input type="submit" value="LOG-IN/SIGN-UP" ng-click="vm.login()" style="background: #42a2e8; border: #f80101;">
+            </div>
+            <div class="add_post post_bk pages_button" ng-if="windowWidth > 991">
+              <input type="submit" value="PAGES" ng-click="vm.pages()" style="background: #f80101; border: #f80101;">
+            </div>
+
+            <div class="add_post post_bk">
+              <input type="submit" value="Post an AD" ng-click="vm.post()">
+            </div>
+            <div class="add_post post_bk pages_button" ng-if="windowWidth < 991">
+              <input type="submit" value="PAGES" ng-click="vm.pages()" style="background: #f80101; border: #f80101;">
+            </div>
+            <div class="add_post post_bk login_signup pages_button" ng-if="windowWidth < 991 && !isLoggedIn">
+              <input type="submit" value="LOG-IN/SIGN-UP" ng-click="vm.login()" style="background: #42a2e8; border: #f80101;">
+            </div>
+            <div class="add_post post_bk pages_button" ng-if="windowWidth < 991 && isLoggedIn">
+                <input type="submit" value="LOG-OUT" ng-click="vm.logout()" style="background: #42a2e8; border: #f80101;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="" ng-controller="PagesController" ng-init = "initController();">
+    <div class="container" ng-controller="AdsController">
+        <div class="page_hdr">
+            <p style="font-size: 22px; font-weight: bold;">Pages</p>
+        </div>
+        <div style="margin-top: -20px; margin-bottom: 70px;">
+            <p class="search_field"><input style="border: 1px solid #cacaca;" type="text" placeholder="Search Posts" ng-model="searchText"></p>
+            <p class="create_or_update_page"><a ng-href="{{ isLoggedIn ? 'post?page' : ''}}" ng-click="createPage()">Create page</a></p>
+        </div>
+        <div style="width: 100%;
+        background: black;
+        color: white;
+        font-size: 30px;
+        padding: 20px;
+        padding-bottom: 10px;
+        font-weight: bold;">
+        Welcome to Pages!
+    </div>
+    <div style="width: 100%;
+    background: red;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    padding-left: 20px;">
+    Create your own personal page and post anything
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px;">
+    <p style="float: left; color: #a0a0a0;">Newest</p>
+</div>
+<div>
+    <div ng-show="data">
+        <ul style="padding-top: 0px;">
+            <li ng-repeat="item in data | startFrom: vm.currentPage * vm.pageSize | limitTo: vm.pageSize | filter: searchText" class="clearfix" style="display: block;">
+                <div>
+                    <p>
+                        <a href="{{item.page['url']}}" ng-if="item.page.profilePic">
+                            <img src="{{item.page.profilePic}}" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+                            <span>{{item.page.title}}</span>
+                        </a>
+                        <a href="{{item.page['url']}}" ng-if="!item.page.profilePic">
+                            <img style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px; background: red; border: 15px solid red;"></img><span>{{item.page.title}}</span>
+                        </a>
+                        <img src="/app-content/images/comments.png" style="width: 17px; margin-left: 15px;">
+                        <span style="font-style: normal; color: #b5b5b5;">{{item.comments.length}}</span>
+                        <i style="margin-left: 15px;" ng-if="diffDate(item.created) > 7"><time>{{item.created | amDateFormat:'MMMM DD, YYYY'}}</time></i>
+                        <i style="margin-left: 15px;" ng-if="diffDate(item.created) <= 7"><time am-time-ago="item.created"></time></i>
+                        <p>
+                        </div>
+
+                        <h4 style="margin: 12px; margin-bottom: 0; margin-left: 6px; font-weight: bold;"><a style="color: #000;" href="page/{{item.page['url']}}/post/{{item['_id']}}" >{{item.title}}</a></h4>
+
+                        <a style="display: flex; margin-top: 12px; width: 380px;" ng-show="item.files[0].secure_url" href="page/{{item.page['url']}}/post/{{item['_id']}}">
+                            <img ng-show="item.files[0].secure_url" style="width: 250px; float: left; margin-left: 5px;" src="{{item.files[0].secure_url}}" alt="" />
+                            <div style="align-self: flex-end; margin-left: 5px;"><img ng-show="item.files[1].secure_url" style="width: 120px; height: 120px; filter: brightness(50%); -webkit-filter: brightness(50%);" src="{{item.files[1].secure_url}}" alt="" /><span style="margin-left: -76px; position: absolute; left: auto; margin-top: 41px; color: #fff; font-size: 30px;" ng-if="item.files.length - 1 > 0">+{{item.files.length - 1}}</span></div>
+                        </a>
+
+                        <div class="linkBlock" ng-show="!item.files[0].secure_url && item.sharedLink">
+                            <a href="{{item.sharedData.url}}" target="_blank" class="mobileMaxWidth">
+                                <img ng-show="item.sharedData.image" src="{{item.sharedData.image}}" alt="" />
+                                <div class="mobileMaxWidth grayBg">
+                                    <p class="linkURL">{{item.sharedData.domain}}</p>
+                                    <p class="linkTitle">{{item.sharedData.title}}</p>
+                                </div>
+                            </a>
+                        </div>
+                        <hr>
+                    </li>
+                </ul>
+            </div>
+            <div ng-hide="data">
+                <h3 style="margin-bottom: 30px;">No record found!</h3>
+            </div>
+        </div>
+        <div ng-show = "windowWidth >= 752">
+            <!-- JuicyAds v3.0 -->
+            <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+            <ins id="820410" data-width="728" data-height="102"></ins>
+            <script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':820410});</script>
+            <!--JuicyAds END-->
+        </div>
+        <div ng-show = "windowWidth < 752">
+            <!-- JuicyAds v3.0 -->
+            <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+            <ins id="820411" data-width="300" data-height="62"></ins>
+            <script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':820411});</script>
+            <!--JuicyAds END-->
+        </div>
+    </div>
+</section>

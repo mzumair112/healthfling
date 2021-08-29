@@ -1,0 +1,437 @@
+@media(max-width: 1199px){
+     .select_area {
+         width: 30%;
+         float: left;
+         margin-right: 10px;
+    }
+    .advertise {
+        border: rgb(244,101,87) 1px solid;
+    }
+}
+/***768***/
+ @media(max-width: 991px) {
+     .select_area {
+         width: 24%;
+         margin-right: 18px;
+         margin-top: 3px;
+         margin-bottom:3px;
+    }
+     .select_item {
+         padding: 12px;
+    }
+     .add_post input[type="submit"] {
+         position: static;
+         margin: 10px 0px 0px;
+    }
+     .select_inr {
+         padding-right: 0px;
+    }
+     .select_sbt {
+         top: 16px;
+    }
+     .bio_area {
+         width: 30%;
+         display: inline-block;
+    }
+     .add_details {
+         padding: 20px 0;
+    }
+     .favourate_text {
+         padding: 0px 0px 15px;
+    }
+     .decimal strong {
+         line-height: 1;
+    }
+     .decimal li {
+         line-height: 10px;
+    }
+     .privacy_inr p, .terms_inr p {
+         font-size: 20px;
+         line-height: 30px;
+         margin-bottom: 10px;
+    }
+     .bio_area .ui-selectmenu-button.ui-button{
+         width: 100%;
+    }
+     .bio_full{
+         width: 91%;
+    }
+     .bio_half{
+         width: 45%;
+    } 
+
+    .bio_title{
+        width: 91%;
+    }
+    .advertise{
+        width: 100%;
+        border: rgb(244,101,87) 1px solid;
+    }
+}
+/******/
+ @media(max-width: 767px) {
+     .select_area {
+         width: 45%;
+         float: left;
+         margin: 5px 12px;
+    }
+     .select_sbt {
+         width: 45%;
+         float: left;
+         position: static;
+         margin: 6px 12px 0;
+    }
+     .favourate_text {
+         padding: 0px 0px 10px;
+    }
+     .add_hdr h2 {
+         margin-bottom: 25px;
+    }
+     .bio_area .ui-selectmenu-button.ui-button {
+         font-size: 13px;
+         width: 100%;
+         border: 1px solid #7e7e7e;
+         margin-bottom: 15px;
+    }
+     .gallery_slider {
+         padding-bottom: 20px;
+    }
+     .gallery_det h2 {
+         font-size: 25px;
+         margin-bottom: 7px;
+         line-height: 30px;
+    }
+     .privacy_section {
+         padding: 0;
+    }
+     .container .privacy_inr h1 {
+         font-size: 35px;
+    }
+     .privacy_inr h1 {
+         margin-bottom: 25px;
+    }
+     .privacy_inr p {
+         font-size: 15px;
+         line-height: 25px;
+         margin-bottom: 8px;
+    }
+     .privacy_inr h3 {
+         margin-bottom: 10px;
+    }
+     .result-image{
+         height: auto;
+    }
+    .galery_full {
+        float: none;
+        width: 100%;
+    }
+    .gallery_thumb li{
+        display: inline-block;
+        margin-right: 10px;
+    }
+    .gallery_thumb{
+        overflow: inherit;
+        padding-left: 0;
+        padding-top: 20px;
+    }
+    .advertise{
+        width: 100%;
+        border: none;
+    }
+}
+/******/
+ @media(max-width: 568px) {
+     .select_area {
+         width: 100%;
+         display: block;
+         margin: 3px auto;
+         float: none;
+    }
+     .select_sbt {
+         display: block;
+         margin: 7px auto;
+         position: static;
+    }
+     .footer_nav li {
+         margin: 0 15px 14px 0;
+         display: inline-block;
+    }
+     .footer_nav li a {
+         line-height: 1.2;
+    }
+     .footer_section {
+         padding: 15px 0;
+    }
+     .bio_area {
+         width: 49%;
+         display: inline-block;
+    }
+    .bio_title {
+        width: 100%;
+    }
+     .bio_full{
+         width: 100%;
+    }
+     .add_hdr h2 {
+         font-size: 25px;
+         padding-bottom: 5px;
+    }
+     .add_details {
+         padding: 10px 0;
+    }
+     .add_note p {
+         font-size: 15px;
+         line-height: 20px;
+    }
+     .gallery_thumb {
+         overflow: inherit;
+         padding-left: 0;
+    }
+     .galery_full {
+         float: none;
+    }
+     .gallery_slider {
+         padding-bottom: 10px;
+    }
+     .galery_full img {
+         width: 100%;
+    }
+     .form-group {
+         margin-bottom: 10px;
+    }
+     .btn-group-lg>.btn, .btn-lg {
+         padding: 8px 15px;
+         font-size: 15px;
+         line-height: 1;
+         border-radius: 4px;
+    }
+     .terms_inr ol, .terms_inr li {
+         line-height: 10px;
+    }
+     .upperRoman {
+         padding-left: 60px;
+    }
+     .container .terms_inr h1 {
+         font-size: 30px;
+    }
+     .privacy_inr p, .terms_inr p {
+         font-size: 18px;
+         line-height: 22px;
+         margin-bottom: 5px;
+    }
+     .upperRoman h3 {
+         font-size: 20px;
+         margin-bottom: 20px;
+         line-height: 25px;
+    }
+     .upperRoman mark {
+         font-size: 16px;
+    }
+     .upperRoman p {
+         font-size: 15px;
+         margin-bottom: 15px;
+    }
+     .decimal strong {
+         font-size: 15px;
+    }
+     .upperRoman li {
+         font-size: 18px;
+         margin-bottom: 10px;
+    }
+     .container .privacy_inr h1 {
+         font-size: 30px;
+    }
+     .privacy_inr h1 {
+         margin-bottom: 20px;
+    }
+     .privacy_inr p {
+         font-size: 15px;
+         line-height: 20px;
+         margin-bottom: 15px;
+         overflow: hidden;
+    }
+     .privacy_inr h3 {
+         margin-bottom: 10px;
+         font-size: 20px;
+    }
+     .bio_full p{
+         font-size: 13px;
+    }
+     .text_right h4 a {
+         font-size: 16px;
+    }
+     .text_right p{
+         font-size: 13px;
+    }
+    .gallery_det h2 {
+        font-size: 18px;
+    }
+    .bread_cnt a {
+        font-size: 13px;
+    }
+    .bread_cnt .breadcrumb>li+li:before{
+        font-size: 18px;
+    }
+    .advertise{
+        width: 100%;
+    }
+}
+ @media(max-width: 420px) {
+     .select_area {
+         width: 100%;
+         display: block;
+         margin: 3px auto;
+         float: none;
+    }
+     .select_sbt {
+         width: 135px;
+         display: block;
+         margin: 7px auto;
+         position: static;
+    }
+     .footer_nav li a {
+         line-height: 1.2;
+    }
+     .fav_hdr h2 {
+         display: block;
+         font-size: 21px;
+         border-bottom: 1px solid #000;
+         margin-bottom: 15px;
+         line-height: 25px;
+         padding-bottom: 5px;
+    }
+     .fav_cnt li {
+         font-size: 16px;
+         color: #000;
+         line-height: 26px;
+    }
+     .disclamer-text {
+         padding: 0px 0 15px;
+    }
+     .dis_inr span {
+         float: none;
+         font-size: 15px;
+    }
+     .dis_inr p {
+         font-size: 14px;
+         line-height: 18px;
+         overflow: inherit;
+         padding-top: 7px;
+         padding-left: 0px;
+    }
+     .footer_section {
+         padding: 10px 0;
+    }
+     .add_details {
+         padding: 0px;
+    }
+     .upperRoman {
+         font-size: 20px;
+         padding-left: 45px;
+    }
+     .upperAlpha {
+         font-size: 18px;
+         padding-left: 0px;
+    }
+     .decimal {
+         font-size: 16px;
+         padding-left: 0px;
+    }
+     .lowerAlpha {
+         font-size: 15px;
+         padding-left: 0px;
+    }
+     .lowerRoman {
+         font-size: 15px;
+         padding-left: 0px;
+    }
+     .terms_section, .privacy_section {
+         padding: 30px 0;
+    }
+     .privacy_inr h1, .terms_inr h1 {
+         margin-bottom: 30px;
+    }
+     .upperRoman {
+         font-size: 18px;
+         padding-left: 30px;
+    }
+     .upperAlpha {
+         font-size: 16px;
+    }
+     .decimal {
+         font-size: 15px;
+    }
+     .lowerAlpha {
+         font-size: 13px;
+    }
+     .lowerRoman {
+         font-size: 13px;
+    }
+     .upperRoman li {
+         font-size: 15px;
+         margin-bottom: 10px;
+    }
+     .privacy_section {
+         padding: 30px 0 0;
+    }
+     .form-group .ng-isolate-scope > div{
+         transform: scale(0.9);
+    }
+    .result-image{
+        width: 70px;
+    }
+    .text_right{
+        padding-left: 12px;
+    }
+    .text_right h4 a {
+        font-size: 15px;
+    }
+    .advertise{
+        width: 100%;
+    }
+}
+ @media(max-width: 360px) {
+     .select_area {
+         width: 100%;
+         display: block;
+         margin: 3px auto;
+         float: none;
+    }
+     .select_sbt {
+         width: 100%;
+         display: block;
+         margin: 7px auto;
+         position: static;
+    }
+     .footer_nav li a {
+         line-height: 1.2;
+    }
+     .add_post input[type="submit"] {
+         width: 100%;
+         background-color: #fd0000;
+         position: static;
+         top: 0;
+         right: 0px;
+         bottom: 0;
+         font-size: 18px;
+         color: #570000;
+         font-weight: 600;
+         margin-top: 10px;
+    }
+     .select_inr {
+         padding-right: 0px;
+         position: relative;
+    }
+     .bio_area {
+         width: 100%;
+         display: block;
+    }
+     .upperRoman {
+         overflow: hidden;
+    }
+    .advertise{
+        width: 100%;
+    }
+}
+ @media(max-width: 320px) {
+}

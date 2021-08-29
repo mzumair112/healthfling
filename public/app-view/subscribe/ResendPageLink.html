@@ -1,0 +1,18 @@
+   <!-- add_details -->
+   <section class="add_details" ng-controller = "SubscribeController" ng-init = "initController();">
+      <button type="button" class="modal_close" ng-click="closeModal();"><i class="fa fa-times-circle"></i></button>
+          <div class="add_hdr flag_hdr">
+            <h2>Enter your email used to create your page and we'll send you an edit link</h2>
+          </div>
+          <div class="flag_reason">
+            <input type="email" ng-model="email" placeholder="Your email" style="border: 2px solid #b1b1b1; width: 80%;">
+            <div class="response_btn_area">
+              <div class="innr_btn">
+                <input type="submit" class="cust_btn" value="Cancel" ng-click="closeModal();">
+              </div>
+              <div class="innr_btn">
+                <input type="submit" class="cust_btn" value="Submit" ng-click="resendPageLink();">
+              </div>
+            </div>
+          </div>
+   </section>

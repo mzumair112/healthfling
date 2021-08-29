@@ -1,0 +1,74 @@
+   <section class="add_details" ng-controller = "ReplyController" ng-init = "initController();">
+          <button type="button" class="close" ng-click="closeModal();">&times;</button>
+          <h1 ng-if="!isLoggedIn">
+              You need to be logged in!
+             </h1>
+
+          <div ng-if="isLoggedIn">
+          <div class="add_hdr">
+            <h2>Re: {{title || message}}<span ng-if= " location || age ">- </span><span ng-if="age">{{age}}</span><span ng-if="location"> ({{location}})</span></h2>
+          </div>
+          <!-- <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div> -->
+          <div class="mandatory_section" ng-if = "showError">
+            <h3>Important</h3>
+            <p ng-if = "showRequiredEmailError">- Please enter a valid email.</p>
+            <p ng-if = "showRequiredReplyMessageError">- Please enter body of the message.</p>
+            <p ng-if = "showEmailError">- Your verification email doesn't match</p>
+            <p ng-if = "showCaptchaError">- Please accept the Recaptcha</p>
+            <p ng-if = "showImageError">- Selected {{imageLength}} images ... Max allowed images is 5.</p>
+          </div>
+          <div class="bio_sec">
+            <div class="add_cnt">
+              <div class="add_note">
+                <p>* <em>REMINDER:</em> Please be aware that your email address will be shown to the poster so its up to you as far as which email address you use to reply.  For safety, never send personal information over the internet to anyone you may not know!</p>
+              </div>
+            </div>
+            <div class="reply_item_outer">
+              <form class="form-horizontal" action="" method="post">
+                <!-- Email input-->
+                <div class="form-group">
+                  <div class="reply_item mand">
+                    <input id="email" name="email" type="text" placeholder="Your email" class="form-control" ng-model="$parent.email">
+                  </div>
+                </div>
+                <!-- Email input-->
+                <div class="form-group">
+                  <div class="reply_item mand">
+                    <input id="email" name="email" type="text" placeholder="Confirm your email" class="form-control" ng-model="$parent.confirmemail">
+                  </div>
+                </div>
+                <!-- Message body -->
+                <div class="form-group">
+                  <div class="reply_item mand">
+                    <textarea class="form-control" id="message" name="message" placeholder="Please enter your message here..." rows="5" ng-model="$parent.replymessage"></textarea>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="reply_item mand">
+                    <p>Add Images (Up to 5 images allowed).
+                    <em>The images will be attached with your reply.</em></p>
+                  </div>
+                  <input type="file" class="cust_file wd_97" ng--temp-file-model="replyfiles" multiple style="color: transparent;" />
+                  <div style="margin-bottom: 20px;">
+                    <img ng-if = "loadingImage" src="app-content/images/imageLoader.gif" style="width: 100px;">
+                    <div class='col-md-2 col-sm-2 col-xs-2' ng-repeat="file in tempImageList" style="padding: 20px 0px;"><div style="position: relative"><img style="padding: 5px;" class='img-responsive' src={{file.secure_url}} ng-init = "stopLoader();"><img src="app-content/images/closeIcon.png" style="position: absolute; top: 4px; right: 5px; cursor: pointer;" ng-click = "deleteImage($index);"/></div></div>
+                  </div>
+                </div>
+
+                <div class="form-group pdL">
+                    <div class="reply_item" vc-recaptcha key="'6LdK608UAAAAAIIPni45gUqw9p_vn4mLa_CtlSlv'" ng-model="$parent.captcha"></div>
+                </div>
+
+                <!-- Form actions -->
+                <div class="form-group pdL">
+                  <div class="reply_item text-left">
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="notify();">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+          </div>
+          </div>
+   </section>

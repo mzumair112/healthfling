@@ -1,0 +1,214 @@
+<div class="dashboard_container clearfix" ng-controller="DashboardController">
+  <div class="dashboard_section">
+    <div class="sidenav">
+      <div class="dashboard_logo_block">
+        <a href="" ng-click="vm.dashboard()" class="moltin_logo"
+          ><img src="app-content/images/logonew.png" alt=""
+        /></a>
+        <a href="" ng-click="vm.dashboard()" class="moltin_logo_favicon"
+          ><img src="app-content/images/faviconnew.png" alt=""
+        /></a>
+      </div>
+      <div id="main-menu" class="main-menu collapse navbar-collapse">
+        <ul class="primary_menu">
+          <li class="menu-item dropdown">
+            <a
+              href="dashboard.html"
+              class="dropdown-toggle"
+              ng-click="vm.dashboard()"
+            >
+              <i class="fa fa-home" aria-hidden="true"></i>
+              <p>Home</p></a
+            >
+          </li>
+          <li class="menu-item dropdown">
+              <a href="" ng-click="vm.search()" class="dropdown-toggle"><i class="fa fa-clipboard"></i><p>Personal Posts</p></a>
+          </li>
+          <li class="menu-item dropdown">
+              <a href="" ng-click="vm.pagePosts()" class="dropdown-toggle"><i class="fa fa-clipboard"></i><p>Page Posts</p></a>
+          </li>
+          <li class="menu-item dropdown">
+            <a
+              href=""
+              ng-click="vm.pages()"
+              class="dropdown-toggle"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              ><i class="fa fa-clipboard" aria-hidden="true"></i>
+              <p>Pages</p></a
+            >
+          </li>
+          <li class="menu-item dropdown">
+            <a
+              href=""
+              ng-click="vm.flagged_search()"
+              class="dropdown-toggle"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fa fa-inbox" aria-hidden="true"></i>
+              <p>Flagged Posts</p></a
+            >
+          </li>
+          <li class="menu-item dropdown">
+              <a href="" ng-click="vm.users()" class="dropdown-toggle"><i class="fa fa-clipboard"></i><p>Users</p></a>
+          </li>
+        </ul>
+        <ul class="secondary_menu">
+          <li class="menu-item dropdown">
+            <a
+              href="#"
+              class="dropdown-toggle"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              ><i class="fa fa-users" aria-hidden="true"></i>
+              <p>Account</p></a
+            >
+          </li>
+          <li class="menu-item dropdown">
+            <a href="" ng-click="vm.logout()" class="dropdown-toggle">
+              <i class="fa fa-sign-out"></i>
+              <p>Log out</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- right-section -->
+
+  <div class="right_section result_rht">
+    <!-- selection-section starts -->
+    <div class="select_sec">
+      <div class="select_inr">
+        <div class="select_item clearfix">
+          <div class="select_area">
+            <select
+              name="number"
+              class="block"
+              ng-model="vm.state"
+              ng-options="x for x in states"
+              ng-change="changeListInCtrl(vm.state);"
+            >
+            </select>
+          </div>
+          <div class="select_area">
+            <select
+              name="number"
+              id="region"
+              class="block"
+              ng-model="vm.region"
+              ng-options="x for x in regions"
+            >
+            </select>
+          </div>
+          <div class="select_area">
+            <select
+              name="number"
+              id="category"
+              class="block"
+              ng-model="vm.category"
+              ng-options="x for x in categories"
+            >
+            </select>
+          </div>
+          <div class="select_sbt">
+            <input type="submit" placeholder="Submit" ng-click="vm.search()" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- selection-section ends -->
+
+    <section
+      class=""
+      ng-controller="PageController"
+      ng-init="initController();"
+    >
+      <div class="container-fluid" ng-controller="AdsController">
+        <div class="add_hdr">
+          <h2 ng-hide="data" style="font-weight: normal;font-size: 14px;">
+            Showing 0 of 0
+          </h2>
+          <h2 ng-show="data" style="font-weight: normal;font-size: 14px;">
+            Showing {{vm.currentPage+1}} of {{data.length/vm.pageSize |
+            roundup}}
+          </h2>
+        </div>
+        <div class="add_cnt result_cnt">
+          <div ng-show="data">
+            <ul style="padding-top: 0px;">
+              <li
+                ng-repeat="item in data | startFrom: vm.currentPage * vm.pageSize | limitTo: vm.pageSize"
+                class="clearfix"
+              >
+                <a href="" ng-click="readPage(item)" class="result-image gallery"
+                  ><img
+                    alt=""
+                    class="thumb"
+                    src="{{item.profilePic || 'https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png'}}"
+                  />
+                </a>
+                <div class="text_right">
+                  <p></p>
+                  <h4>
+                    <a href="" ng-click="readPage(item)">{{item.title}} [{{item.status}}]</a>
+                  </h4>
+                  <p></p>
+                  <p><time am-time-ago="item.created"></time></p>
+                  <div class="text_buttons">
+                    <ul>
+                      <li ng-if="item.status == 'active'">
+                        <a href="#flagPage/{{item['_id']}}">
+                          <i class="fa fa-flag"></i>
+                        </a>
+                      </li>
+                      <li class="unflag_pst" ng-if="item.status != 'active'">
+                        <a href="#unflagPage/{{item['_id']}}">
+                          <i class="fa fa-flag"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="" ng-click="editPage(item)">
+                          <i class="fa fa-edit"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#deletePage/{{item['_id']}}">
+                          <i class="fa fa-trash"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div ng-hide="data">
+            <h3 style="margin-bottom: 30px;">No record found!</h3>
+          </div>
+          <div class="blog_slider">
+            <button
+              ng-disabled="vm.currentPage == 0"
+              ng-click="vm.currentPage=vm.currentPage-1"
+              class="nav_btn prev"
+            >
+              < Previous
+            </button>
+            <button
+              ng-disabled="vm.currentPage >= data.length/vm.pageSize - 1"
+              ng-click="vm.currentPage=vm.currentPage+1"
+              class="nav_btn"
+            >
+              Next >
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

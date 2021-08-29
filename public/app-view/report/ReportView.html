@@ -1,0 +1,63 @@
+   <section class="add_details" ng-controller = "ReportController" ng-init = "initController();">
+      <button type="button" class="modal_close" ng-click="closeModal();"><i class="fa fa-times-circle"></i></button>
+      <h1 ng-if="!isLoggedIn">
+          You need to be logged in!
+         </h1>
+
+      <div ng-if="isLoggedIn">
+          <div class="add_hdr flag_hdr">
+            <h2>Why are you reporting this page?</h2>
+          </div>
+          <div class="mandatory_section" ng-if = "showError">
+            <h3>Important</h3>
+            <p ng-if = "showReasonError">- Please select a valid reason.</p>
+          </div>
+          <div class="flag_reason">
+            <h5>here are the options:</h5>
+            <ul>
+              <li ng-repeat="flagOption in flagOptionList">
+                <label class="cust_check">
+                  <input
+                    type="checkbox"
+                    value="{{flagOption}}"
+                    ng-checked="selection.indexOf(flagOption) > -1"
+                    ng-click="toggleSelection(flagOption, selection)"
+                  ><span></span> {{flagOption}}
+                </label>
+              </li>
+              <!-- <li>
+                <label class="cust_check">
+                    <input type="checkbox">
+                    <span></span> Child pornograpy and or endangerment
+                </label>
+              </li>
+              <li>
+                <label class="cust_check">
+                    <input type="checkbox">
+                    <span></span> Prostitution
+                </label>
+              </li>
+              <li>
+                <label class="cust_check">
+                    <input type="checkbox">
+                    <span></span> Promoted terrorism
+                </label>
+              </li>
+              <li>
+                <label class="cust_check">
+                    <input type="checkbox">
+                    <span></span> Spam or misleading
+                </label>
+              </li> -->
+            </ul>
+            <div class="response_btn_area">
+              <div class="innr_btn">
+                <input type="submit" class="cust_btn" value="Cancel" ng-click="closeModal();">
+              </div>
+              <div class="innr_btn">
+                <input type="submit" class="cust_btn" value="Submit" ng-click="reportPage();">
+              </div>
+            </div>
+          </div>
+          </div>
+   </section>

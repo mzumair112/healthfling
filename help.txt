@@ -1,0 +1,9 @@
+To start server:
+
+nohup node server.js &
+
+To Stop server:
+
+pkill node
+
+

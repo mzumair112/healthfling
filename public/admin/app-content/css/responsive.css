@@ -1,0 +1,191 @@
+@media (max-width: 1199px) {
+    a.dropdown-toggle p {
+        font-size: 20px;
+    }
+    .right_section {
+        width: 75%;
+    }
+    .select_area {
+        width: 29.5%;
+    }
+    .dashboard_body h1 {
+        font-size: 45px;
+    }
+    .dashboard_section {
+        width: 25%;
+    }
+    .select_sec {
+        padding: 20px 0;
+        margin: 0 auto;
+       width: 100%;
+    }
+
+    .select_item {
+       padding: 12px 135px 12px 12px;
+    }
+}
+
+@media (max-width: 991px) {
+    a.dropdown-toggle p {
+        font-size: 0;
+    }
+    .dashboard_body h1 {
+        font-size: 35px;
+    }
+    .dashboard_section {
+        width: 10%;
+    }
+    .right_section {
+        width: 90%;
+        overflow-y: scroll;
+    }
+    .select_area {
+        width: 33%;
+        margin-right: 0;
+        margin-top: 3px;
+        margin-bottom: 3px;
+        padding: 5px;
+    }
+
+    .select_sbt {
+        top: 16px;
+    }
+    .select_item {
+        padding: 12px;
+        padding-bottom: 55px;
+    }
+    .select_sbt {
+        position: absolute;
+        width: 190px;
+        top: auto;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        right: auto;
+        background-color: #fff;
+    }
+    .moltin_logo{
+        display: none;
+    }
+
+    .moltin_logo_favicon{
+        display: block;
+    }
+
+    .moltin_logo_favicon {
+        width: 40px;
+        display: block;
+        margin: 15px;
+    }
+
+    .result_cnt {
+       height: 100%;
+    }
+
+    .gallery_cnt {
+        height: 100%;
+        overflow: visible;
+    }
+
+    h2 {
+        font-size: 20px;
+        line-height: 25px;
+    }
+
+    h4 {
+        font-size: 16px;
+        line-height: 25px;
+    }
+
+}
+
+@media (max-width: 767px) {
+
+}
+
+
+@media (max-width: 575px) {
+    .select_item{
+        padding: 12px;
+    }
+    .select_area {
+        width: 100%;
+        display: block;
+        float: none;
+    }
+    .select_sbt{
+        width: 100%;
+    }
+    select.block.ng-pristine.ng-valid {
+        font-size: 14px;
+        font-weight: 900;
+    }
+    .dashboard_body h1 {
+        font-size: 25px;
+        font-weight: 900;
+    }
+    .dashboard_section {
+        width: 20%;
+    }
+    .right_section {
+       width: 80%;
+       padding: 15px;
+    }
+    .select_sbt{
+        left: 18px;
+        width: 91%;
+        transform: none;
+    }
+    .srch_hdr h1{
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+
+    .result_rht .container-fluid{
+        padding: 0;
+    }
+
+
+    .select_sbt{
+        width: 97%;
+    }
+
+    .select_sbt {
+        display: block;
+        margin: 7px auto;
+        position: static;
+    }
+    .text_buttons li a{
+        font-size: 22px;
+    }
+
+    .result_cnt .text_buttons li{
+        margin-right: 10px;
+    }
+
+    .result-image{
+        float: none;
+    }
+
+    .text_right{
+        overflow: visible;
+        padding-top: 15px;
+        padding-left: 0;
+    }
+
+    .moltin_logo_favicon{
+        width: 38px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .dashboard_body h1 {
+    font-size: 20px;
+    font-weight: 900;
+}
+    select.block.ng-pristine.ng-valid {
+        font-size: 14px;
+        font-weight: 900;
+    }
+}

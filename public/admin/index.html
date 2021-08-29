@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+    <html ng-app="app" lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title ng-bind="pageTitle"></title>
+        <link rel="icon" type="image/png" href="app-content/images/favicon.png" />
+
+        <!--CSS-->
+
+        <link href="app-content/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="app-content/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <!--Custom-->
+        <link href="app-content/css/custom.css" rel="stylesheet" type="text/css">
+        <link href="app-content/css/responsive.css" rel="stylesheet" type="text/css">
+
+    </head>
+
+    <!--loader-->
+    <body window-size>
+
+    <div id="preloader" ng-show="loading">
+        <div id="status">
+            <span>
+                <img src="app-content/images/pre-loader.gif" alt="">
+            </span>
+        </div>
+    </div>
+    <!--end loader-->
+
+
+    <div ng-view></div>
+
+
+    <!-- Scripts -->
+
+    <script src="app-lib/jquery-2.1.4.js"></script>
+
+    <!--Plugins-->
+    <script src="app-lib/bootstrap.min.js"></script>
+
+    <!--Custom-->
+    <script src="app-lib/custom.js"></script>
+
+
+    <script src="app-lib/angular.js"></script>
+    <script src="app-lib/jquery-ui.js"></script>
+    <script src="app-lib/ui-bootstrap-tpls.min.js"></script>
+    <script src="app-lib/angular-route.js"></script>
+    <script src="app-lib/angular-cookies.js"></script>
+    <script src="app-lib/moment.min.js"></script>
+    <script src="app-lib/angular-moment.min.js"></script>
+    <script src="app-lib/angular-recaptcha.min.js"></script>
+
+    <script src="app.js"></script>
+
+    <script src="app-services/HttpService.js"></script>
+    <script src="app-services/AuthenticationService.js"></script>
+    <script src="app-services/FlashService.js"></script>
+
+    <script src="app-view/login/loginController.js"></script>
+    <script src="app-view/pagePost/pagePostController.js"></script>
+    <script src="app-view/search/searchController.js"></script>
+    <script src="app-view/post/postController.js"></script>
+    <script src="app-view/page/pageController.js"></script>
+    <script src="app-view/dashboard/DashboardController.js"></script>
+    <script src="app-view/flag/flagController.js"></script>
+    <script src="app-view/unflag/unflagController.js"></script>
+    <script src="app-view/delete/deleteController.js"></script>
+    <script src="app-view/detail/DetailController.js"></script>
+    <script src="app-view/user/UserController.js"></script>
+
+
+
+    </body>
+
+</html>

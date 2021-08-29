@@ -1,0 +1,192 @@
+
+    <div class="dashboard_container clearfix" ng-controller="DetailController">
+        <div class="dashboard_section">
+            <div class="sidenav">
+                <div class="dashboard_logo_block">
+                    <a href="" ng-click="vm.dashboard()" class="moltin_logo"><img src="app-content/images/logonew.png" alt=""></a>
+                    <a href="" ng-click="vm.dashboard()" class="moltin_logo_favicon"><img src="app-content/images/faviconnew.png" alt=""></a>
+                </div>
+                <div id="main-menu" class="main-menu collapse navbar-collapse">
+                    <ul class="primary_menu">
+                            <li class="menu-item dropdown">
+                                <a href="" class="dropdown-toggle"  ng-click="vm.dashboard()"> <i class="fa fa-home" aria-hidden="true"></i><p>Home</p></a>
+                            </li>
+                            <li class="menu-item dropdown">
+                                <a href="" ng-click="vm.search()" class="dropdown-toggle"><i class="fa fa-clipboard"></i><p>Personal Posts</p></a>
+                            </li>
+                            <li class="menu-item dropdown">
+                                <a href="" ng-click="vm.pagePosts()" class="dropdown-toggle"><i class="fa fa-clipboard"></i><p>Page Posts</p></a>
+                            </li>
+                            <li class="menu-item dropdown">
+                                <a href="" ng-click="vm.pages()" class="dropdown-toggle"><i class="fa fa-clipboard"></i><p>Pages</p></a>
+                            </li>
+                            <li class="menu-item dropdown">
+                                <a href="" ng-click="vm.flagged_search()" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-inbox" aria-hidden="true"></i><p>Flagged Posts</p></a>
+                            </li>
+                            <li class="menu-item dropdown">
+                                <a href="" ng-click="vm.users()" class="dropdown-toggle"><i class="fa fa-clipboard"></i><p>Users</p></a>
+                            </li>
+
+                        </ul>
+                    <ul class="secondary_menu">
+                        <li class="menu-item dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users" aria-hidden="true"></i><p>Account</p></a>
+                        </li>
+                        <li class="menu-item dropdown">
+                            <a href="" ng-click="vm.logout()" class="dropdown-toggle">
+                                <i class="fa fa-sign-out"></i><p>Log out</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--right-section-->
+
+        <div class="right_section result_rht">
+            <!-- selection-section starts-->
+            <div class="select_sec">
+                  <div class="select_inr">
+                    <div class="select_item clearfix">
+                        <div class="select_area">
+                          <select name="number" class="block" ng-model="vm.state" ng-options="x for x in states" ng-change="changeListInCtrl(vm.state);" ng-init="vm.state = vm.state || 'State'">
+                          </select>
+                        </div>
+                        <div class="select_area">
+                          <select name="number" id="region" class="block" ng-model="vm.region" ng-options="x for x in regions" ng-init="vm.region = vm.region || 'Region'">
+                          </select>
+                        </div>
+                        <div class="select_area">
+                          <select name="number" id="category" class="block" ng-model="vm.category" ng-options="x for x in categories" ng-init="vm.category = vm.category || 'Category'">
+                          </select>
+                        </div>
+                        <div class="select_sbt">
+                           <input type="submit" placeholder="Submit" ng-click ="vm.search()">
+                        </div>
+                    </div>
+              </div>
+            </div>
+    <!-- selection-section ends-->
+
+    <div class="gallery_cnt" ng-controller = "DetailController" ng-init = "initController();">
+      <div class="container">
+         <div class="bread_cnt">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item" ng-if ="state"><a href="" ng-click="vm.searchFilter(state,'Region','Category')">{{state}}</a></li>
+              <li class="breadcrumb-item" ng-if ="region"><a href="" ng-click="vm.searchFilter(state,region,'Category')">{{region}}</a></li>
+               <li class="breadcrumb-item" ng-if ="category"><a href="" ng-click="vm.searchFilter(state,region,category)">{{category}}</a></li>
+            </ol>
+        </div>
+        <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+        <div class="gallery_det">
+          <h2>{{title || message}}<span ng-if= " location || age ">- </span><span ng-if="age">{{age}}</span><span ng-if="location"> ({{location}})</span><span style= "font-weight: bold;text-transform: uppercase;padding: 0px 10px;background: darkseagreen;margin-left: 20px;">{{status}}</span></h2>
+          <div>
+            <a href="#flag/{{post_id}}">Flag</a>
+            <a style="margin-left: 5px;" href="#unflag/{{post_id}}">Unflag</a>
+            <a style="margin-left: 5px;" href="#delete/{{post_id}}">Delete</a>
+            <a style="margin-left: 5px;" href="#unflag/{{post_id}}">Activate</a>
+          </div>
+          <div class="details_section" ng-if = "flagreason">
+            <div class="det_item" ng-if = "flagreason">
+              <label>Flag Reason:</label>
+              <span>{{flagreason}}</span>
+            </div>
+          </div>
+          <div class="row" ng-show="showEmail" >
+            <div class="col-md-7">
+              <div class="form-group">
+                <div class="col-md-9" style="padding: 0px;margin-bottom: 15px;">
+                  <input id="email" name="email" type="text" placeholder="Your email" class="form-control" ng-model="sender2">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery_slider clearfix" ng-if = "files" style="padding-bottom:15px;">
+              <div class="galery_full">
+                  <img src="{{mainImage}}" alt=""/>
+              </div>
+              <div class="gallery_thumb">
+                <ul>
+                    <li ng-repeat="item in files">
+                      <a href="" ng-click = "changeMainImage(item);" >
+                          <img src="{{ item.secure_url}}" alt=""/>
+                      </a>
+                    </li>
+                </ul>
+              </div>
+          </div>
+          <div class="created_section">
+            <h4 style="word-wrap: break-word;">{{message}}</h2>
+            <h5 style= "margin-top: 10px;font-weight: 500;">Posted: <time am-time-ago="created"></time</h5>
+          </div>
+
+
+          <div class="anonnymous_comment" ng-show = "anonymouscomment == 'enabled'">
+            <div class="anonnymous_typos">
+              <!-- <div class="comment_block">
+                <h4>Post an anonnymous comment for this post!</h4>
+                <div class="comment_field">
+                  <textarea class="cust_textarea" ng-model="commentmessage"></textarea>
+                </div>
+              </div> -->
+              <div class="comments_counter">
+                <p><span>{{comments.length}}</span>comments</p>
+              </div>
+              <!-- <div class="form-group pdL">
+                  <div class="reply_item" vc-recaptcha key="'6LdK608UAAAAAIIPni45gUqw9p_vn4mLa_CtlSlv'" ng-model="captcha"></div>
+              </div> -->
+              <!-- <div class="cust_sbt_outer text-right">
+                 <input type="submit" value="Comment!" ng-click="addComment(post_id);">
+              </div> -->
+            </div>
+            <div class="reply_anonnymous">
+              <div class="reply_item_anony" ng-repeat="item in comments">
+                <span>Reply {{$index+1}}</span>
+                <a href="" ng-click="deleteComment(item._id)">Delete</a>
+                <a ng-if = "item.status == 'active'" href="" ng-click="flagComment(item._id)">Flag</a>
+                <a ng-if = "item.status == 'flagged'" href="" href="" ng-click="unflagComment(item._id)">Unflag</a>
+                <div class="reply_txt_anony">
+                  <h5 ng-show = "item.status == 'active'"> {{item.body}}</h5>
+                  <h5 ng-show = "item.status == 'inactive'" style="color: #8dc63f;"> The comment has been deleted</h5>
+                  <h5 ng-show = "item.status == 'flagged'" style="color: #8dc63f;"> The comment has been flagged</h5>
+                  <p>Posted: <em><time am-time-ago="item.created"></time></em></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="disabled_anonymous_text" ng-show = "anonymouscomment == 'disabled'">
+            <p><span><i class="fa fa-ban"></i></span>The poster has disabled anonymous comments</p>
+          </div>
+
+
+          <div ng-show = "windowWidth >= 752">
+            <div class="advertise">
+
+                <!-- JuicyAds v3.0 -->
+                <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+                <ins id="820410" data-width="728" data-height="102"></ins>
+                <script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':820410});</script>
+                <!--JuicyAds END-->
+
+            </div>
+          </div>
+
+          <div ng-show = "windowWidth < 752">
+            <div class="advertise">
+
+                <!-- JuicyAds v3.0 -->
+                <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+                <ins id="820411" data-width="300" data-height="62"></ins>
+                <script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':820411});</script>
+                <!--JuicyAds END-->
+
+            </div>
+          </div>
+          <p style="margin-bottom: 20px;"> *If you feel this post violates the law in any way shape or form, such as exploitation of minors or human trafficking, please contact the authorities immediately</p>
+        </div>
+      </div>
+    </div>
+
+</div>

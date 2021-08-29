@@ -1,0 +1,362 @@
+<!-- add_details -->
+<section class="add_details" ng-controller="EditController" ng-init="initController();">
+    <div class="container" ng-show="!currentPost.data.page">
+        <div class="add_hdr">
+            <h2>Edit - {{title || message}}<span ng-if= " location || age ">- </span><span ng-if="age">{{age}}</span><span ng-if="location"> ({{location}})</span></h2>
+        </div>
+        <div class="mandatory_section" ng-if="showError">
+            <h3>Important</h3>
+            <p ng-if="showRequiredCountryError">- Please select Country.</p>
+            <p ng-if="showRequiredStateError">- Please select State.</p>
+            <p ng-if="showRequiredRegionError">- Please select Region.</p>
+            <p ng-if="showRequiredCategoryError">- Please select Category.</p>
+            <p ng-if="showTitleError">- Please enter title of the post.</p>
+            <p ng-if="showMessageError">- Please enter body of the post.</p>
+            <p ng-if="showCaptchaError">- Please accept the Recaptcha</p>
+            <p ng-if="showImageError">- Selected {{imageLength}} images ... Max allowed images is 5.</p>
+        </div>
+        <div class="add_cnt">
+            <div class="add_note">
+                <p>* You can edit your post here</p>
+            </div>
+        </div>
+        <div class="bio_clear">
+            <div class="bio_left">
+                <div class="bio_area mand bio_title bio_full">
+
+                    <input id="title" name="tile" type="text" placeholder="TITLE" class="bio_block ui-selectmenu-button ui_textarea ui-widget ui-selectmenu-button-closed ui-corner-all cursor-select" ng-model="title" maxlength="100">
+                </div>
+
+                <div class="bio_area mand bio_full">
+
+                    <textarea class="bio_block ui-selectmenu-button ui_textarea ui-corner-all cursor-select" ng-model="message" id="message" name="message" placeholder="POST YOU AD HERE..." rows="13"></textarea>
+                </div>
+            </div>
+            <div class="bio_right">
+                <div class="bio_area mand">
+                  <select name="number" id="slct_st" class="bio_block ui-selectmenu-button ui-button ui-widget ui-selectmenu-button-closed ui-corner-all" ng-model="country" ng-options="x for x in countries" ng-change="changeNewPostStateList(country);state = newstates[0];region = newregions[0];" ng-init="changeNewPostStateList(country);state = newstates[0];" required>
+                  </select>
+                </div>
+                <div class="bio_area mand" ng-show="country == 'United States' || country == 'Canada'">
+
+                    <select name="number" id="slct_st" class="bio_block ui-selectmenu-button ui-button ui-widget ui-selectmenu-button-closed ui-corner-all" ng-model="state"  ng-options="x for x in newstates" ng-change="changeNewPostList(state);region = newregions[0];" ng-init="changeNewPostList(state);region = newregions[0];" required>
+                    </select>
+                </div>
+                <div class="bio_area mand">
+
+                    <select name="number" id="slct_reg" class="bio_block ui-selectmenu-button ui-button ui-widget ui-selectmenu-button-closed ui-corner-all" ng-model="region" ng-options="x for x in newregions">
+                    </select>
+                </div>
+                <div class="bio_area mand">
+
+                    <select name="number" id="slct_catg" class="bio_block ui-selectmenu-button ui-button ui-widget ui-selectmenu-button-closed ui-corner-all" ng-model="category" ng-options="x for x in categories">
+                    </select>
+                </div>
+                <div class="bio_area">
+                    <input name="number" id="slct_loc" class="bio_block ui-selectmenu-button ui_textarea ui-widget ui-selectmenu-button-closed ui-corner-all cursor-select" ng-model="location" placeholder="SPECIFIC LOCATION">
+                </div>
+                <div class="bio_area">
+                    <input name="number" id="slct_age" class="bio_block ui-selectmenu-button ui_textarea ui-widget ui-selectmenu-button-closed ui-corner-all cursor-select" ng-model="age" placeholder="AGE" min="18" max="60">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="anonnymous_area_outer" style="margin-top: 10px;margin-bottom: 10px;">
+          <div class="anonymous_cnt" style="padding-left: 0; margin-bottom: 10px;">
+            <p>Location info will show a map (Optional)</p>
+          </div>
+
+          <div class="bio_mid_item  anonnymous_area">
+             <div class="bio_area">
+               <div class="bio_area">
+                 <input name="number" id="slct_loc" class="bio_block ui-selectmenu-button ui_textarea ui-widget ui-selectmenu-button-closed ui-corner-all cursor-select" ng-model="city" placeholder="City, State">
+               </div>
+               <span style="margin-bottom: 20px; margin-left: 20px; font-size: 15px; font-weight: bold;">or</span>
+               <div class="bio_area" style="margin-left: 20px; width: 310px;">
+                 <input name="number" id="slct_loc" class="bio_block ui-selectmenu-button ui_textarea ui-widget ui-selectmenu-button-closed ui-corner-all cursor-select" ng-model="zip" placeholder="Zip Code (zipcode is only for US residents)">
+               </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="bio_mid bio_mid_brd">
+            <div class="bio_mid_item wd_20">
+                <div class="bio_area">
+                    <select name="number" class="bio_block ui-selectmenu-button ui-button ui-widget ui-selectmenu-button-closed ui-corner-all" ng-model="mage" ng-options="x for x in ageRange">
+              </select>
+                </div>
+            </div>
+            <div class="bio_mid_item wd_20">
+                <div class="bio_area">
+                    <select name="number" class="bio_block ui-selectmenu-button ui-button ui-widget ui-selectmenu-button-closed ui-corner-all" ng-model="haircolor" ng-options="x for x in haircolorList">
+              </select>
+                </div>
+            </div>
+            <div class="bio_mid_item wd_20">
+                <div class="bio_area">
+                    <select name="number" class="bio_block ui-selectmenu-button ui-button ui-widget ui-selectmenu-button-closed ui-corner-all" ng-model="height" ng-options="x for x in heightList">
+                </select>
+                </div>
+            </div>
+            <div class="bio_mid_item wd_20">
+                <div class="bio_area">
+                    <select name="number" class="bio_block ui-selectmenu-button ui-button ui-widget ui-selectmenu-button-closed ui-corner-all" ng-model="ethnicity" ng-options="x for x in ethnicityList">
+                </select>
+                </div>
+            </div>
+            <div class="bio_mid_item wd_20">
+                <div class="bio_area">
+                    <select name="number" class="bio_block ui-selectmenu-button ui-button ui-widget ui-selectmenu-button-closed ui-corner-all" ng-model="orientation" ng-options="x for x in orientationList">
+                </select>
+                </div>
+            </div>
+            <div class="bio_mid_item wd_20">
+                <div class="bio_area">
+                    <select name="number" class="bio_block ui-selectmenu-button ui-button ui-widget ui-selectmenu-button-closed ui-corner-all" ng-model="bodytype" ng-options="x for x in bodytypeList">
+                </select>
+                </div>
+            </div>
+            <div class="bio_mid_item wd_20">
+                <div class="bio_area">
+                    <select name="number" class="bio_block ui-selectmenu-button ui-button ui-widget ui-selectmenu-button-closed ui-corner-all" ng-model="eyecolor" ng-options="x for x in eyecolorList">
+                </select>
+                </div>
+            </div>
+            <div class="bio_mid_item wd_20">
+                <div class="bio_area">
+                    <select name="number" class="bio_block ui-selectmenu-button ui-button ui-widget ui-selectmenu-button-closed ui-corner-all" ng-model="mstatus" ng-options="x for x in statusList">
+                </select>
+                </div>
+            </div>
+            <div class="bio_mid_item wd_20">
+                <div class="bio_area">
+                    <select name="number" class="bio_block ui-selectmenu-button ui-button ui-widget ui-selectmenu-button-closed ui-corner-all" ng-model="gender" ng-options="x for x in genderList">
+                </select>
+                </div>
+            </div>
+            <div class="bio_mid_item wd_20">
+                <div class="bio_area">
+                    <select name="number" class="bio_block ui-selectmenu-button ui-button ui-widget ui-selectmenu-button-closed ui-corner-all" ng-model="weight" ng-options="x for x in weightRange">
+                </select>
+                </div>
+            </div>
+            <div class="bio_mid_item wd_20">
+                <div class="bio_area">
+                    <select name="number" class="bio_block ui-selectmenu-button ui-button ui-widget ui-selectmenu-button-closed ui-corner-all" ng-model="bodyhair" ng-options="x for x in bodyHairList">
+                </select>
+                </div>
+            </div>
+            <div class="bio_mid_item wd_20">
+                <div class="bio_area">
+                    <select name="number" class="bio_block ui-selectmenu-button ui-button ui-widget ui-selectmenu-button-closed ui-corner-all" ng-model="hivstatus" ng-options="x for x in hivstatusList">
+                </select>
+                </div>
+            </div>
+        </div>
+        <div class="anonnymous_area_outer">
+            <div class="bio_mid_item  anonnymous_area">
+                 <div class="bio_area">
+                    <select name="number" class="bio_block ui-selectmenu-button ui-button ui-widget
+                    ui-selectmenu-button-closed ui-corner-all" ng-model="anonymouscomment" ng-options="x for x in anonymouscommentList">
+                    </select>
+                    <div class="anonymous_cnt" >
+                      <p>Allow anonymous comments on your post.(You can always disable/enable and delete comments anytime). You can reply to comments as poster when you will be logged in</p>
+                    </div>
+                  </div>
+            </div>
+
+            <div ng-show ="anonymouscomment == 'enabled'" class="bio_mid_item  anonnymous_area" style="margin-top: 15px;margin-right: 5px;">
+                 <div class="bio_area">
+                    <select name="number" class="bio_block ui-selectmenu-button ui-button ui-widget
+                    ui-selectmenu-button-closed ui-corner-all" ng-model="notified" ng-options="x for x in notifiedList">
+                    </select>
+                    <div class="anonymous_cnt">
+                      <p>Get notified when someone comments on your post</p>
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+        <div class="anonnymous_area_outer" style="margin-top: 10px;">
+            <div class="bio_mid_item  anonnymous_area">
+               <div class="bio_area">
+                  <select name="number" class="bio_block ui-selectmenu-button ui-button ui-widget
+                  ui-selectmenu-button-closed ui-corner-all" ng-model="share" ng-options="x for x in anonymouscommentList">
+                  </select>
+                  <div class="anonymous_cnt">
+                    <p>Add a share icon on your post</p>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+        <div class="bio_sec">
+            <div class="bio_area bio_full image_upload_area" >
+                <div class="upload_txt">
+                    <p>Add Images (Up to 10 images allowed).
+                        <em>The first image will be the featured image.</em></p>
+                </div>
+                <input type="file" class="cust_file" ng-file-model="files" multiple style="color: transparent;" />
+                <div class="file_results">
+                    <img ng-if="loadingImage" src="app-content/images/imageLoader.gif" style="width: 100px;">
+                    <div class="upload_item" ng-repeat="file in imageList">
+                        <div style="position: relative"><img class='img-responsive' src={{file.secure_url}} ng-init="stopLoader();"><img src="app-content/images/closeIcon.png" style="position: absolute; top: 4px; right: 5px; cursor: pointer;" ng-click="deleteImage($index);" /></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="emmbed_video" style="background: #cdcbf5;clear: both;">
+              <h3>Insert Video Link or Embed Code</h3>
+              <input type="text" placeholder='Insert YouTube link ONLY or Embed a video from any site!' class="embeded_area" ng-model="embed">
+            </div>
+
+            <div class="bio_area bio_full">
+                <p>By posting on Healthyfling.com you agree to the <a href="terms">terms and conditions</a>, <a href="policy">privacy policy</a> and <a href="disclaimer">Disclaimer</a> of this site.</p>
+            </div>
+            <div class="form-group">
+                <div class="recaptcha_blk" vc-recaptcha key="'6LdK608UAAAAAIIPni45gUqw9p_vn4mLa_CtlSlv'" ng-model="captcha"></div>
+            </div>
+
+            <div class="bio_area confirm_edit">
+                <div class="post_bk">
+                    <input type="submit" value="Save!" ng-click="editPost(id)">
+                </div>
+                <div class="post_bk">
+                    <input type="submit" value="Cancel!" ng-click=" vm.detail(id)">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container" ng-show="currentPost.data.page">
+        <div class="add_hdr">
+            <h2>Edit - {{title || message}}</h2>
+        </div>
+
+          <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+          <div class="mandatory_section" ng-if ="vm.showError">
+            <h3>Important</h3>
+            <p ng-if = "showTitleError">- Please enter title of the post.</p>
+            <p ng-if = "showMessageError">- Please enter body of the post.</p>
+            <p ng-if = "showCaptchaError">- Please accept the Recaptcha</p>
+            <p ng-if = "showImageError">- Selected {{vm.imageLength}} images ... Max allowed images is 10.</p>
+          </div>
+          <div class="add_cnt">
+              <div class="add_note">
+                  <p>* You can edit your post here</p>
+              </div>
+          </div>
+
+          <div class="bio_clear">
+            <div class="bio_left">
+                <div class="bio_area mand bio_title bio_full">
+
+                    <input id="title" name="tile" type="text" placeholder="TITLE" class="bio_block ui-selectmenu-button ui_textarea ui-widget ui-selectmenu-button-closed ui-corner-all cursor-select" ng-model="title" maxlength="100">
+                </div>
+
+                <div class="bio_area mand bio_full">
+
+                    <textarea class="bio_block ui-selectmenu-button ui_textarea ui-corner-all cursor-select" ng-model="message" id="message" name="message" placeholder="POST YOU AD HERE..." rows="13"></textarea>
+                </div>
+            </div>
+          </div>
+
+          <div class="bio_sec">
+              <div class="bio_area bio_full image_upload_area">
+                  <div class="upload_txt">
+                      <p><strong>Please insert your link you want to share with your post</strong></p>
+                  </div>
+                  <input type="text" ng-model="sharedData.url" style="border: 1px solid #adadad; margin-bottom: 10px; width: 80%;">
+              </div>
+          </div>
+          <!-- <div class="bio_sec">
+              <div class="bio_area bio_full image_upload_area">
+                  <div class="upload_txt">
+                      <p><strong>Embed social media content from Twitter, Facebook...and more!</strong></p>
+                  </div>
+                  <span ng-repeat="item in embedSocial track by $index">
+                      <input type="text" ng-model="embedSocial[$index]" style="border: 1px solid #adadad; margin-bottom: 10px; width: 80%;"> <span ng-hide="$index !== embedSocial.length-1" ng-click="addEmbedSocialField()" style="cursor: pointer">Add another</span>
+                  </span>
+              </div>
+          </div> -->
+
+          <div class="anonnymous_area_outer">
+            <div class="bio_mid_item  anonnymous_area">
+                 <div class="bio_area">
+                    <select name="number" class="bio_block ui-selectmenu-button ui-button ui-widget
+                    ui-selectmenu-button-closed ui-corner-all" ng-model="anonymouscomment" ng-options="x for x in anonymouscommentList">
+                    </select>
+                    <div class="anonymous_cnt" >
+                      <p>Allow public comments on your post.(You can always disable/enable and delete comments anytime). You can reply to comments as poster when you will be logged in</p>
+                    </div>
+                  </div>
+            </div>
+
+            <div ng-if ="anonymouscomment == 'enabled'" class="bio_mid_item  anonnymous_area">
+               <div class="bio_area">
+                  <select name="number" class="bio_block ui-selectmenu-button ui-button ui-widget
+                  ui-selectmenu-button-closed ui-corner-all" ng-model="currentPost.data.notified" ng-options="x for x in notifiedList">
+                  </select>
+                  <div class="anonymous_cnt">
+                    <p>Get notified when someone comments on your post</p>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="bio_sec">
+              <div class="bio_area bio_full image_upload_area" >
+                  <div class="upload_txt">
+                      <p>Add Images (Up to 10 images allowed).
+                          <em>The first image will be the featured image.</em></p>
+                  </div>
+                  <input type="file" class="cust_file" ng-file-model="files" multiple style="color: transparent;" />
+                  <div class="file_results">
+                      <img ng-if="loadingImage" src="app-content/images/imageLoader.gif" style="width: 100px;">
+                      <div class="upload_item" ng-repeat="file in imageList track by $index">
+                          <div style="position: relative">
+                              <img class='img-responsive' src={{file.secure_url}} ng-init="stopLoader();">
+                              <img src="app-content/images/closeIcon.png" style="position: absolute; top: 4px; right: 5px; cursor: pointer;" ng-click="deleteImage($index);">
+                          </div>
+                          <input type="text" ng-model="imageList[$index].signature" placeholder="Description (Optional)" style="border: 1px solid #adadad;">
+                      </div>
+                  </div>
+                  <hr>
+                  <div class="upload_txt">
+                    <p>Image URL (Up to 10 images allowed).</p>
+                  </div>
+                  <span ng-repeat="item in imageUrl track by $index">
+                      <input type="text" ng-model="imageUrl[$index].secure_url" placeholder="Image URL" style="border: 1px solid #adadad; margin-bottom: 10px; width: 40%;">
+                      <input type="text" ng-model="imageUrl[$index].signature" placeholder="Description (Optional)" style="border: 1px solid #adadad; margin-bottom: 10px; width: 40%;">
+                      <span ng-hide="$index !== imageUrl.length-1 || imageUrl.length >= 9" ng-click="addImageUrlField()" style="cursor: pointer">Add another</span>
+                  </span>
+              </div>
+          </div>
+
+              <div class="emmbed_video" style="background: #cdcbf5;clear: both;">
+                <h3>Insert Video Link or Embed Code</h3>
+                <input type="text" placeholder='Insert YouTube link ONLY or Embed a video from any site!' class="embeded_area" ng-model="embed">
+                <input type="text" placeholder='Insert description for this video (Optional)' class="embeded_area" ng-model="embedDescription">
+              </div>
+
+              <div class="bio_area bio_full">
+                  <p>By posting on Healthyfling.com you agree to the <a href="terms">terms and conditions</a>, <a href="policy">privacy policy</a> and <a href="disclaimer">Disclaimer</a> of this site.</p>
+              </div>
+              <div class="form-group">
+                  <div class="recaptcha_blk" vc-recaptcha key="'6LdK608UAAAAAIIPni45gUqw9p_vn4mLa_CtlSlv'" ng-model="captcha"></div>
+              </div>
+
+              <div class="bio_area confirm_edit">
+                  <div class="post_bk">
+                      <input type="submit" value="Save!" ng-click="editPostPage(id)">
+                  </div>
+                  <div class="post_bk">
+                      <input type="submit" value="Cancel!" ng-click="vm.detail(id)">
+                  </div>
+              </div>
+
+          </div>
+    </div>
+</section>
+<script src='https://www.google.com/recaptcha/api.js'></script>

@@ -1,0 +1,186 @@
+<!-- selection-section starts-->
+<div class="select_sec" ng-controller = "MediaVideoController" >
+  <div class="container">
+    <div class="select_inr">
+      <div class="select_item" ng-class="{select_three: vm.country != 'United States' && vm.country != 'Canada' && vm.country != 'Country'}">
+        <div class="select_area">
+          <select name="number" class="block" ng-model="vm.country" ng-options="x for x in countries"  ng-change="changeStateListInCtrl(vm.country);vm.state = states[0];vm.region = regions[0];" ng-init = "changeStateListInCtrl(vm.country);">
+          </select>
+        </div>
+        <div class="select_area" ng-show ="vm.country == 'United States' || vm.country == 'Canada' || vm.country == 'Country'">
+          <select name="number" class="block" ng-model="vm.state" ng-options="x for x in states" ng-change="changeListInCtrl(vm.state);" ng-init = "changeListInCtrl(vm.state)">
+          </select>
+        </div>
+        <div class="select_area">
+          <select name="number" id="region" class="block" ng-model="vm.region" ng-options="x for x in regions" ng-init="vm.region = vm.region || 'Region'">
+          </select>
+        </div>
+        <div class="select_area">
+          <select name="number" id="category" class="block" ng-model="vm.category" ng-options="x for x in categories" ng-init="vm.category = vm.category || 'Category'">
+          </select>
+        </div>
+        <div class="select_sbt">
+          <input type="submit" placeholder="Submit" ng-click ="vm.search()">
+        </div>
+        <div ng-show = "vm.savedPreference == true" class="loc_block">
+          <a href="" ng-click="vm.unlockPreference()"><i class="fa fa-lock"></i></a>
+        </div>
+        <div ng-hide = "vm.savedPreference == true" class="unloc_block">
+          <a href="" ng-click="vm.lockPreference()"><i class="fa fa-unlock"></i></a>
+        </div>
+      </div>
+      <div class="add_post post_bk pages_button" ng-if="windowWidth > 991 && isLoggedIn">
+          <input type="submit" value="LOG-OUT" ng-click="vm.logout()" style="background: #42a2e8; border: #f80101;">
+      </div>
+      <div class="add_post post_bk login_signup pages_button" ng-if="windowWidth > 991 && !isLoggedIn">
+        <input type="submit" value="LOG-IN/SIGN-UP" ng-click="vm.login()" style="background: #42a2e8; border: #f80101;">
+      </div>
+      <div class="add_post post_bk pages_button" ng-if="windowWidth > 991">
+        <input type="submit" value="PAGES" ng-click="vm.pages()" style="background: #f80101; border: #f80101;">
+      </div>
+
+      <div class="add_post post_bk">
+        <input type="submit" value="Post an AD" ng-click="vm.post()">
+      </div>
+      <div class="add_post post_bk pages_button" ng-if="windowWidth < 991">
+        <input type="submit" value="PAGES" ng-click="vm.pages()" style="background: #f80101; border: #f80101;">
+      </div>
+      <div class="add_post post_bk login_signup pages_button" ng-if="windowWidth < 991 && !isLoggedIn">
+        <input type="submit" value="LOG-IN/SIGN-UP" ng-click="vm.login()" style="background: #42a2e8; border: #f80101;">
+      </div>
+      <div class="add_post post_bk pages_button" ng-if="windowWidth < 991 && isLoggedIn">
+          <input type="submit" value="LOG-OUT" ng-click="vm.logout()" style="background: #42a2e8; border: #f80101;">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- selection-section ends-->
+
+<!-- gallery cnt-->
+
+<div class="gallery_cnt" ng-controller = "MediaVideoController" ng-init = "initController();">
+  <div class="container">
+    <div class="bread_cnt">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="pages">Pages</a></li>
+        <li class="breadcrumb-item"><a href="{{currentPost.data.page.url}}">{{currentPost.data.page.title}}</a></li>
+        <li class="breadcrumb-item"><a href="{{currentPost.data.page.url}}/media">Media</a></li>
+        <li class="breadcrumb-item"><strong>Video</strong></li>
+      </ol>
+    </div>
+    <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+    <div class="gallery_det">
+      <div>
+        <a href="" ng-click="openModal_flag()">Flag</a>
+        <a href="" style="margin-left: 5px;" ng-click="toggleShareButton();">Share</a>
+        <div class="likeDislike" style="margin-left: 5px;" ng-click="likePost(currentPost.data._id);"><img src="/app-content/images/like.png"> Like | {{currentPost.data.videoLike}}</div>
+        <div class="likeDislike" ng-click="dislikePost(currentPost.data._id);"><img src="/app-content/images/dislike.png"> | {{currentPost.data.videoDislike}}</div>
+      </div>
+      <!-- href="#delete/{{post_id}}" -->
+      <div ng-show="showShareButtons == true">
+        <a href="" class="fa fa-twitter"
+        socialshare
+        socialshare-provider="twitter"
+        socialshare-text="{{title}}"
+        socialshare-hashtags="healthyflingpost"
+        socialshare-url="{{currentPath}}">
+      </a>
+      <a href="" class="fa fa-facebook"
+      socialshare
+      socialshare-provider="facebook"
+      socialshare-text="{{title}}"
+      socialshare-hashtags="healthyflingpost"
+      socialshare-url="{{currentPath}}">
+    </a>
+    <a href="" class="fa fa-linkedin"
+    socialshare
+    socialshare-provider="linkedin"
+    socialshare-text="{{title}}"
+    socialshare-description="{{message}}"
+    socialshare-source="healthyflingpost"
+    socialshare-url="{{currentPath}}">
+  </a>
+  <a href="" class="fa fa-reddit"
+  socialshare
+  socialshare-provider="reddit"
+  socialshare-text="{{title}}"
+  socialshare-url="{{currentPath}}">
+</a>
+<a href="" class="fa fa-google"
+socialshare
+socialshare-provider="google"
+socialshare-url="{{currentPath}}">
+</a>
+<a href="" class="fa fa-pinterest"
+socialshare
+socialshare-provider="pinterest"
+socialshare-text="{{title}}"
+socialshare-url="{{currentPath}}">
+</a>
+<a href="" class="fa fa-tumblr"
+socialshare
+socialshare-provider="tumblr"
+socialshare-text="{{title}}"
+socialshare-url="{{currentPath}}">
+</a>
+<a href="" class="fa fa-xing"
+socialshare
+socialshare-provider="xing"
+socialshare-text="{{title}}"
+socialshare-url="{{currentPath}}">
+</a>
+<a href="mailto:?Subject={{title}}&body={{currentPath}}" class="fa fa-envelope"
+socialshare
+socialshare-provider="email"
+socialshare-subject="{{title}}"
+socialshare-body="{{currentPath}}">
+</a>
+<a href="" class="fa fa-whatsapp"
+socialshare
+socialshare-provider="whatsapp"
+socialshare-text="{{title}}"
+socialshare-url="{{currentPath}}">
+</a>
+</div>
+
+<div class="gallery_slider clearfix" ng-if = "files.length > 0 || embed != '' || city || zip" style="padding-bottom:15px;">
+  <div class="galery_full" style="margin-right: 20px;">
+      <iframe ng-if="!iframe" width="560" height="315" src="{{embed}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div ng-if="iframe" ng-bind-html="embed | unsafe"></div>
+  </div>
+  <h4>{{embedDescription}}</h4>
+  <br>
+  <h3><a href="page/{{currentPost.data.page.url}}/post/{{currentPost.data._id}}">View Original Post</a></h3>
+</div>
+
+
+<div ng-show = "windowWidth >= 752" style="display: inline-block;">
+  <div class="advertise">
+
+    <!-- JuicyAds v3.0 -->
+    <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+    <ins id="820410" data-width="728" data-height="102"></ins>
+    <script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':820410});</script>
+    <!--JuicyAds END-->
+
+  </div>
+</div>
+
+<div ng-show = "windowWidth < 752" style="display: inline-block;">
+  <div class="advertise">
+
+    <!-- JuicyAds v3.0 -->
+    <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+    <ins id="820411" data-width="300" data-height="62"></ins>
+    <script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':820411});</script>
+    <!--JuicyAds END-->
+
+  </div>
+</div>
+
+</div>
+</div>
+</div>
+
+
+<!-- gallery cnt ends-->

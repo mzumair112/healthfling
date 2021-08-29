@@ -1,0 +1,1070 @@
+
+@media(max-width:1365px){
+    .text_Aria h1{
+        font-size: 38px;
+        line-height: 40px;
+    } 
+}
+/*=======================================================*/
+@media(max-width:1199px){
+    .rqst_btn li:first-child a{
+        line-height: 38px;
+        padding: 0px 15px;
+    }
+    
+    .rqst_btn li a{
+        font-size: 12px;
+    }
+    
+    .rqst_btn li{
+        margin-right: 10px;
+    }
+    
+    .text_Aria h1 {
+        font-size: 25px;
+        line-height: 30px;
+        color: #fff;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+    
+    .innr_pic {
+        float: left;
+        width: 60%;
+        margin-left: -5%;
+    }
+    
+    .how_WorksInnr_row:nth-child(2n) .innr_pic {
+        float: right;
+        margin-right: -5%;
+    }
+    
+    .beneit_item{
+        min-height: 323px;
+    }
+    
+    .footer{
+        margin-top: -405px;
+    }
+    
+    .cms-text {
+        width: 75%;
+    }
+    
+    .blg-text p {
+        font-size: 16px;
+        line-height: 22px;
+        padding: 8px 0;
+    }
+    
+    .blog-text-area h2 {
+        font-size: 27px;
+        line-height: 36px;
+        margin-top: -30px;
+    }
+    
+    a.read-more{
+        line-height: 45px;
+        margin-top: 15px;
+    }
+    
+    .block-row {
+        margin-bottom: 50px;
+    }
+    
+    .blog-text-area{
+        margin-top: 25px;
+    }
+    
+    .trans-text {
+        padding-top: 0;
+    }
+    
+    .trans-text h3 {
+        font-size: 26px;
+        line-height: 36px;
+        margin-bottom: 15px;
+    }
+    
+    .trans-text p {
+        font-size: 17px;
+        line-height: 24px;
+    }
+    
+    .col-serv h4 {
+        font-size: 18px;
+        line-height: 23px;
+        margin-bottom: 8px;
+    }
+    
+    .col-serv p {
+        font-size: 15px;
+        color: #8793a4;
+        line-height: 20px;
+    }
+    
+    .ceo-talk {
+        margin-top: 30px;
+    }
+    
+    .desig-text p {
+        font-size: 18px;
+        line-height: 25px;
+        padding-top: 30px;
+        padding-left: 25px;
+    }
+    
+    .cloud-trans {
+        padding: 30px 0;
+    }
+    
+    .talk-inner {
+        padding-bottom: 40px;
+    }
+    
+    .cloud-optimization,.cloud-migration {
+        margin-top: 40px;
+        margin-bottom: 30px;
+    }
+    
+    .about-footer{
+        margin-top: -572px;
+    }
+}
+
+@media(max-width:991px){
+     .navbar-default .hddr_outer .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+        background-color: #db433e;
+        border: none;
+    }
+    
+    .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover{
+        background-color: #db433e;
+    }
+    
+    .navbar-default .navbar-toggle {
+        border: none;
+        padding: 9px;
+        background-color: rgba(218,67,62,.6);
+    }
+    
+    .hddr_outer .navbar-default .navbar-collapse, .hddr_outer .navbar-default .navbar-form{
+        background: #fff;
+        padding: 0;
+        box-shadow: 0px 10px 30px rgba(0,0,0,.6);
+    }
+    
+    .hddr_outer .navbar-default .navbar-nav li a{
+        color: #d54039;
+    }
+    
+    .hddr_outer ul.navbar-nav{
+        padding: 0 25px;
+        /*border-bottom: 2px solid #999;*/
+        margin: 0;
+        /*box-shadow: 0px 13px 30px rgba(0,0,0,.6);*/
+    }
+    
+    
+     .navbar-default .navbar-toggle .icon-bar {
+        background-color: #fff;
+    }
+    
+    .text_Aria {
+        max-width: 345px;
+    }
+    
+    .text_Aria h1 {
+        font-size: 25px;
+        line-height: 28px;
+        letter-spacing: 1px;
+        font-weight: 600;
+    }
+    
+    .text_Aria p {
+        font-size: 16px;
+        color: #fff;
+        line-height: 20px;
+        padding-right: 0px;
+        margin-bottom: 18px;
+    }
+    
+    .bannr_text{
+        top: 96px;
+    }
+    
+    .how_itPara {
+        max-width: 100%;
+        padding: 0 30px;
+    }
+    
+    .how_itPara p {
+        font-size: 24px;
+        line-height: 34px;
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+    .vdo_btn{
+        bottom: 40px;
+    }
+    
+    .innr_pic {
+        float: none;
+        width: 100%;
+        margin: -10%;
+    }
+    
+    .innr_text {
+        width: 100%;
+        float: none;
+        padding-left: 0px;
+        padding-top: 65px;
+    }
+    
+    .how_WorksInnr_row:nth-child(2n) .innr_text {
+        padding-right: 0px;
+        padding-left: 0px;
+        clear: both;
+    }
+    
+    .how_WorksInnr_row:nth-child(2n) .innr_pic {
+        float: right;
+        margin-right: -5%;
+    }
+    
+    .how_WorksInnr_row:last-child {
+        padding-bottom: 30px;
+    }
+    
+    .how_WorksInnr_row:nth-child(2n) .innr_text{
+        padding-bottom: 30px;
+    }
+    
+    .beneit_item{
+        margin-bottom: 20px;
+    }
+    
+    .how_rqstbtn{
+        text-align: center;
+    }
+    
+    .cms-text h2 {
+        font-size: 44px;
+        line-height: 48px;
+    }
+    
+    .footer {
+        margin-top: -350px;
+    }
+    
+    .cloud-cost{
+        margin-top: -50px;
+    }
+    
+    .cloud-cost{
+        padding-bottom: 30px;
+    }
+    
+    .cont-footer {
+        padding-top: 40px;
+    }
+    
+    .team {
+        padding: 45px 0 0;
+    }
+    
+    .team-head h2{
+        margin-bottom: 5px;
+    }
+    
+    .team-head{
+        padding: 0 5%;
+    }
+    
+    .hddr_outer .navbar-default .navbar-nav li.active a, .hddr_outer .navbar-default .navbar-nav li a:hover, .hddr_outer .navbar-default .navbar-nav li a:focus {
+    color: #d54039 !important;
+    }
+    
+    .hddr_outer .navbar-default .navbar-nav li.active a{
+        position: relative;
+    }
+    
+    .hddr_outer .navbar-default .navbar-nav li.active a:after{
+        position: absolute;
+        content: "";
+        background-color: #d54039;
+        height: 2px;
+        left: 0;
+        bottom: 0;
+        width: 54px;
+    }
+    
+    .team-head {
+        margin-bottom: 30px;
+    }
+    
+    .team-blk {
+        margin-bottom: 35px;
+    }
+    
+    .data {
+        padding: 25px 0;
+    }
+    
+    .data-text {
+        padding-top: 20px;
+        padding-left: 0;
+    }
+    
+    .data-text li {
+        font-size: 19px;
+        line-height: 25px;
+        padding-bottom: 15px;
+        background-position: left 6px;
+        padding-left: 25px;
+    }
+    
+    .crdt-inner {
+        padding: 0 4px 0 15px;
+        min-height: 160px;
+    }
+    
+    .crdt-inner p {
+        font-size: 14px;
+        line-height: 20px;
+        margin-top: 6px;
+    }
+    
+    .credit-box {
+        padding: 35px 0;
+    }
+    
+    .customer {
+        padding-top: 25px;
+    }
+    
+    .customer .team-head,.statement .team-head {
+        padding: 0 15%;
+    } 
+    
+    .statement {
+        padding: 30px 0 0;
+    }
+    
+    .stmnt-blk {
+        padding: 0 25%;
+        margin-bottom: 50px;
+    }
+    
+    .stmnt-blk p {
+        font-size: 15px;
+        line-height: 20px;
+    }
+    
+    .stmnt-blk h3{
+        margin-bottom: 10px;
+    }
+    
+    .benefits_trackit{
+        padding: 35px 0;
+    }
+    
+    .about-footer {
+        margin-top: -565px;
+    }
+    
+    .stmnt-blk {
+        padding: 0 0;
+    }
+    
+}
+@media(max-width:767px){
+    .footer {
+        margin-top: -270px;
+    }
+    .bannr_text {
+        position: relative;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background: #d53d36;
+        top: 0;
+        background-color: #d53d36;
+        padding: 15px 30px;
+    }
+    
+    .text_Aria {
+        max-width: 100%;
+    }
+    
+    .hddr_outer .navbar-brand{
+        margin-left: 25px;
+    }
+    .footer {
+        background-image: url(../images/res-footer-bg.png);
+        background-position: center center;
+    }
+    
+    .how_It_Works{
+        padding-top: 25px;
+    }
+    
+    .how_itPara p {
+        font-size: 22px;
+        line-height: 28px;
+    }
+    
+    .innr_text h3 {
+        font-size: 28px;
+        margin-bottom: 10px;
+        line-height: 32px;
+    }
+    
+    .innr_text p {
+        font-size: 16px;
+        line-height: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .how_rqstbtn li:first-child a {
+        line-height: 40px;
+        padding: 0px 20px;
+    }
+    
+    .how_rqstbtn li a{
+        letter-spacing: 1px;
+    }
+    
+    .beneit_item {
+        min-height: 270px;
+    }
+    
+    .benefit_btn {
+        margin-top: 20px;
+    }
+    
+    .benefits_trackit{
+        padding: 30px 0;
+    }
+    
+    .trckt_btn{
+        line-height: 40px;
+        min-width: 200px;
+    }
+    
+    .beneft_text p {
+        font-size: 15px;
+        line-height: 20px;
+    }
+    
+    .blog-inner{
+        width: 450px;
+        margin: 10px auto;
+    }
+    
+    .blog-inner figure img{
+        width: 100%;
+    }
+    
+    .blog {
+        padding: 25px 0 30px;
+    }
+    
+    .blog-inner a .des {
+       min-height: 106px;
+    }
+    
+    .vdo_btn p{
+        margin-bottom: 6px;
+    }
+    
+    .vdo_btn {
+        bottom: 20px;
+    }
+    
+    .cms-text h2 {
+        font-size: 38px;
+        line-height: 40px;
+    }
+    
+    .cms-text {
+        width: 85%;
+    }
+    
+    .cms {
+        padding-top: 35px;
+    }
+    
+    .ft-sec-one {
+        padding: 0 15px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .sec-two-inner li {
+        padding-bottom: 10px;
+    }
+    
+    .ft-sec-two {
+        text-align: center;
+        margin: 15px 0;
+    }
+    .sec-two-inner li {
+        padding-bottom: 5px;
+    }
+    
+    .ft-sec-three{
+        text-align: center;
+    }
+    
+    .left_cntct_infrm li:first-child {
+        padding-bottom: 5px;
+    }
+    
+    .cont-footer h3{
+        padding-bottom: 10px;
+    }
+    
+    .cloud-cost {
+        margin-top: -130px;
+    }
+    
+    .blg-bnr-txt{
+       top: 20px; 
+    }
+    
+    .block-row .col-sm-5.col-xs-12 figure img{
+        width: 100%
+    }
+    
+    .blog-text-area h2 {
+        margin-top: -15px;
+        line-height: 30px;
+    }
+    
+    .trans-text h3 {
+        font-size: 24px;
+        line-height: 30px;
+        margin-bottom: 8px;
+        margin-top: 15px;
+    }
+    
+    .col-serv .col-sm-4{
+        margin-bottom: 20px;
+    }
+    
+    .ceo-talk {
+        margin-top: 0;
+    }
+    
+    .desig-text {
+        background-position: left 15px;
+        background-size: 90px;
+    }
+    
+    .talk-inner{
+        margin: 0
+    }
+    
+    .cloud-optimization figure,.cloud-migration figure,.cloud-trans figure{
+        text-align: center;
+    }
+    
+    .cloud-migration .col-sm-6.pull-right{
+        float: none !important;
+    }
+    
+    .cloud-migration .trans-text {
+        padding-right: 0px;
+    }
+    
+    .member-detail .mem-name{
+        line-height: 30px;
+    }
+    
+    .team-blk {
+        margin-bottom: 25px;
+        min-height: 450px;
+    }
+    
+    .team-blk figure img{
+        width: 100%
+    }
+    
+    .member-detail p {
+        font-size: 14px;
+        line-height: 16px;
+    }
+    
+    .col-cutomer-1, .col-cutomer-2, .col-cutomer-3{
+        width: 100%;
+    }
+    
+    .col-cutomer-2,.col-cutomer-3 {
+        margin-top: 0;
+    }
+    
+    .col-cutomer-1 a, .col-cutomer-2 a, .col-cutomer-3 a{
+        width: 32.33%;
+    }
+    
+    .system-pg-about .how_rqstbtn{
+        top: 20%;
+    }
+    
+    .about-footer {
+        margin-top: -520px;
+    }
+    
+    .customer .team-head, .statement .team-head {
+        padding: 0 6%;
+    }
+    
+    .team-head h2 {
+        line-height: 34px;
+        font-size: 26px;
+    }
+    
+    .crdt-inner {
+        padding: 0 10px 0;
+        min-height: 160px;
+        border: 1px solid #fff !important;
+        width: 32.33%;
+        margin: 2px 2px;
+    }
+    
+    .crdt-inner:first-child {
+        padding-left: 15px;
+    }
+    
+    .col-cutomer-1:nth-child(2), .col-cutomer-1:nth-child(4) {
+        margin-top: 0;
+        text-align: center;
+    }
+    
+    .col-cutomer-1:nth-child(3), .col-cutomer-1:nth-child(6) {
+        margin-top: 0;
+        text-align: center;
+    }
+    
+}
+@media(max-width:568px){
+    .how_WorksInnr_row {
+        padding-top: 50px;
+    }
+    
+    .blog-inner {
+        width: 90%;
+    }
+    
+    .vdo_btn a {
+        height: 45px;
+        width: 45px;
+        line-height: 40px;
+    }
+    
+    .vdo_btn a i{
+        font-size: 20px;
+        margin-left: 6px;
+    }
+    
+    .innr_text{
+        padding-top: 40px;
+    }
+    
+    .request .trail{
+        margin-right: 0;
+        margin-bottom: 12px;
+        padding: 13px 25px;
+    }
+    
+    .request .demo{
+        display: block
+    }
+    
+    .footer {
+        margin-top: -230px;
+    }
+    
+    .request {
+        margin-top: 25px;
+        margin-bottom: 30px;
+    }
+    
+    .cms-text p{
+        padding: 0 0;
+    }
+    
+    .cms-text h2 {
+        font-size: 32px;
+        line-height: 36px;
+    }
+    
+    .cms-text p {
+        font-size: 15px;
+        line-height: 20px;
+    }
+    
+    .cms-text {
+        width: 95%;
+    }
+    
+    .blog-gal {
+        margin-top: 20px;
+    }
+    
+    .sec-two-inner ul.ftr_innr{
+        display: none;
+    }
+    
+    .hddr_outer{
+        top: 12px;
+    }
+    
+    .sec-two-inner h3{
+        position: relative;
+        cursor: pointer;
+    }
+    
+    .sec-two-inner h3:after {
+        content: "\f078";
+        font-family: FontAwesome;
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: inherit;
+        position: absolute;
+        font-size: 12px;
+        color: #fff;
+        top: 0;
+        transform: translateX(-50%);
+        right: 0;
+    }
+    
+    .designation .ceo-name{
+        margin-top: 6px;
+    }
+   
+    .ft-sec-two .sec-two-inner {
+        display: block;
+        width: 100%;
+        vertical-align: top;
+        text-align: left;
+    }
+    
+    .system-pg-about .how_rqstbtn{
+        top: 10px;
+        width: 225px;
+    }
+    
+    .about-footer {
+        margin-top: -395px;
+    }
+    
+    .team-head p {
+        font-size: 18px;
+        line-height: 23px;
+    }
+    
+    .data-text li {
+        font-size: 17px;
+        line-height: 20px;
+        padding-bottom: 10px;
+        background-position: left 5px;
+        padding-left: 20px;
+        background-size: 8px;
+    }
+    
+    .team-blk {
+        min-height: 350px;
+    }
+    
+}
+@media(max-width:480px){
+    .hddr_outer .navbar-brand {
+        width: 150px;
+    }
+    
+    .bannr_text{
+        padding: 12px 10px;
+    }
+    
+    .rqst_btn li:first-child a {
+        line-height: 30px;
+        padding: 0px 10px;
+    }
+    
+    .beneft_text h4{
+        font-size: 15px;
+    }
+    
+    .beneit_item{
+        padding: 25px 10px 15px;
+    }
+    
+    .beneft_text p {
+        font-size: 14px;
+        line-height: 18px;
+    }
+    
+    .beneit_item {
+        min-height: 240px;
+    }
+    
+    .how_itPara p {
+        font-size: 17px;
+        line-height: 24px;
+    }
+    
+    .how_rqstbtn li{
+        margin-bottom: 12px;
+        margin-right: 0
+    }
+    
+    .how_rqstbtn li:last-child{
+        display: block;
+    }
+    
+    .footer {
+        margin-top: -265px;
+    }
+    
+    .benefit_btn li {
+        display: block;
+        vertical-align: middle;
+        width: 200px;
+        margin: 0 auto 10px;
+    }
+    
+    .benefit_btn li:last-child {
+        margin: 0px auto;
+    }
+    
+    .cont-footer {
+        padding-top: 25px;
+    }
+    
+    .cont-footer .col-sm-3.col-xs-12{
+        padding: 0;
+    }
+    
+    .text_Aria h1 {
+        font-size: 22px;
+        line-height: 25px;
+    }
+    
+    .vdo_btn a {
+        height: 30px;
+        width: 30px;
+        line-height: 25px;
+    }
+    
+    .vdo_btn a i {
+        font-size: 15px;
+        margin-left: 4px;
+    }
+    
+    .trackit_hdng p {
+        line-height: 20px;
+        font-size: 16px;
+        color: #8793a4;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    
+    .trackit_hdng h3 {
+        font-size: 25px;
+        margin-bottom: 0;
+    }
+    
+    .blog-gallery {
+        padding: 40px 0 0px;
+    }
+    
+    .block-row {
+        margin-bottom: 30px;
+    }
+    
+    .blg-text p {
+        font-size: 15px;
+        line-height: 20px;
+        padding: 5px 0;
+    }
+    
+    .des-text {
+        padding-top: 7px;
+    }
+    
+    .hddr_outer .navbar-default .navbar-nav li {
+        margin: 10px 40px 6px 0px;
+    }
+    
+    .about-footer {
+        margin-top: -350px;
+    }
+    
+    .stmnt-blk {
+        padding: 0 8%;
+    }
+    
+    .team .col-md-3.col-sm-4.col-xs-6{
+        width: 100%;
+    }
+    
+    .crdt-inner{
+        width: 48%;
+    }
+    
+    .crdt-inner p {
+        line-height: 18px;
+        margin-top: 0;
+    }
+    
+}
+@media(max-width:420px){
+    .rqst_btn li {
+        margin-bottom: 10px;
+    }
+    
+    .benefit_outer .col-md-3.col-sm-6.col-xs-6{
+        width: 100%;
+    }
+    
+    .beneit_item {
+        min-height: 210px;
+    }
+    
+    .blog-inner a .des p {
+        font-size: 14px;
+    }
+    
+    .blog-inner a .des {
+        min-height: 98px;
+    }
+    
+    .cms-text h2 {
+        font-size: 27px;
+        line-height: 31px;
+    }
+    .footer {
+        margin-top: -200px;
+    }
+    
+    .service-logos a{
+        width: 28%;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    
+    .how_itPara p {
+        font-size: 16px;
+        line-height: 20px;
+        padding-bottom: 15px;
+    }
+    
+    .vdo_btn {
+        bottom: 2px;
+        width: 100%;
+    }
+    
+    .vdo_btn p{
+        letter-spacing: 1px;
+    }
+    
+    .rqst_btn {
+        text-align: center;
+    }
+    
+    .blog-text-area h2 {
+        font-size: 25px;
+        line-height: 30px;
+        margin-bottom: 18px;
+    }
+    
+    .blg-text p {
+        font-size: 15px;
+        line-height: 20px;
+        padding: 5px 0;
+    }
+    
+    a.read-more {
+        line-height: 36px;
+        margin-top: 10px;
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
+    
+    .description {
+        margin-top: 15px;
+    }
+    
+    .blog-pagination .pagination>li>a, .blog-pagination .pagination>li>span{
+        padding: 0px 10px;
+        font-size: 12px;
+    }
+    
+    .blog-pagination  .pagination {
+        margin: 10px 0;
+    }
+    
+    .trans-text p {
+        font-size: 15px;
+        line-height: 20px;
+    }
+    
+    .talk-inner {
+        padding-bottom: 20px;
+    }
+    
+    .cloud-optimization, .cloud-migration {
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .desig-text p {
+        font-size: 17px;
+        line-height: 20px;
+    }
+    
+    .about-footer {
+        margin-top: -315px;
+    }
+    
+    .col-cutomer-1 a, .col-cutomer-2 a, .col-cutomer-3 a {
+        width: 49%;
+    }
+    
+    .team-head p {
+        font-size: 16px;
+        line-height: 20px;
+    }
+    
+    .trackit_hdng h3 {
+        font-size: 22px;
+    }
+    
+}
+@media(max-width:360px){
+    .hddr_outer .navbar-brand {
+        width: 120px;
+    }
+    
+    .social{
+        float: none !important;
+        display: block;
+        text-align: center;
+    }
+    
+    .cpy-rit {
+        display: block;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    
+    .col-cutomer-1 a, .col-cutomer-2 a, .col-cutomer-3 a {
+        width: 100%;
+    }
+    
+    .col-cutomer-1 a img, .col-cutomer-2 a img, .col-cutomer-3 a img {
+        width: 100%;
+    }
+}

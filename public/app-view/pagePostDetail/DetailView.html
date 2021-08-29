@@ -1,0 +1,448 @@
+<!-- selection-section starts-->
+<div class="select_sec" ng-controller = "PagePostDetailController" >
+  <div class="container">
+    <div class="select_inr">
+      <div class="select_item" ng-class="{select_three: vm.country != 'United States' && vm.country != 'Canada' && vm.country != 'Country'}">
+        <div class="select_area">
+          <select name="number" class="block" ng-model="vm.country" ng-options="x for x in countries"  ng-change="changeStateListInCtrl(vm.country);vm.state = states[0];vm.region = regions[0];" ng-init = "changeStateListInCtrl(vm.country);">
+          </select>
+        </div>
+        <div class="select_area" ng-show ="vm.country == 'United States' || vm.country == 'Canada' || vm.country == 'Country'">
+          <select name="number" class="block" ng-model="vm.state" ng-options="x for x in states" ng-change="changeListInCtrl(vm.state);" ng-init = "changeListInCtrl(vm.state)">
+          </select>
+        </div>
+        <div class="select_area">
+          <select name="number" id="region" class="block" ng-model="vm.region" ng-options="x for x in regions" ng-init="vm.region = vm.region || 'Region'">
+          </select>
+        </div>
+        <div class="select_area">
+          <select name="number" id="category" class="block" ng-model="vm.category" ng-options="x for x in categories" ng-init="vm.category = vm.category || 'Category'">
+          </select>
+        </div>
+        <div class="select_sbt">
+          <input type="submit" placeholder="Submit" ng-click ="vm.search()">
+        </div>
+        <div ng-show = "vm.savedPreference == true" class="loc_block">
+          <a href="" ng-click="vm.unlockPreference()"><i class="fa fa-lock"></i></a>
+        </div>
+        <div ng-hide = "vm.savedPreference == true" class="unloc_block">
+          <a href="" ng-click="vm.lockPreference()"><i class="fa fa-unlock"></i></a>
+        </div>
+      </div>
+      <div class="add_post post_bk pages_button" ng-if="windowWidth > 991 && isLoggedIn">
+          <input type="submit" value="LOG-OUT" ng-click="vm.logout()" style="background: #42a2e8; border: #f80101;">
+      </div>
+      <div class="add_post post_bk login_signup pages_button" ng-if="windowWidth > 991 && !isLoggedIn">
+        <input type="submit" value="LOG-IN/SIGN-UP" ng-click="vm.login()" style="background: #42a2e8; border: #f80101;">
+      </div>
+      <div class="add_post post_bk pages_button" ng-if="windowWidth > 991">
+        <input type="submit" value="PAGES" ng-click="vm.pages()" style="background: #f80101; border: #f80101;">
+      </div>
+
+      <div class="add_post post_bk">
+        <input type="submit" value="Post an AD" ng-click="vm.post()">
+      </div>
+      <div class="add_post post_bk pages_button" ng-if="windowWidth < 991">
+        <input type="submit" value="PAGES" ng-click="vm.pages()" style="background: #f80101; border: #f80101;">
+      </div>
+      <div class="add_post post_bk login_signup pages_button" ng-if="windowWidth < 991 && !isLoggedIn">
+        <input type="submit" value="LOG-IN/SIGN-UP" ng-click="vm.login()" style="background: #42a2e8; border: #f80101;">
+      </div>
+      <div class="add_post post_bk pages_button" ng-if="windowWidth < 991 && isLoggedIn">
+          <input type="submit" value="LOG-OUT" ng-click="vm.logout()" style="background: #42a2e8; border: #f80101;">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- selection-section ends-->
+
+<!-- gallery cnt-->
+
+<div class="gallery_cnt" ng-controller = "PagePostDetailController" ng-init = "initController();">
+  <div class="container">
+    <div class="bread_cnt">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="pages">Pages</a></li>
+        <li class="breadcrumb-item"><a href="{{currentPost.data.page.url}}">{{currentPost.data.page.title}}</a></li>
+        <li class="breadcrumb-item"><strong>Post</strong></li>
+      </ol>
+    </div>
+    <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+    <div class="gallery_det">
+      <!-- <h4 ng-if="status === 'flagged'">This post has been flagged for review</h4> -->
+      <h2>{{title}}</h2>
+
+      <div>
+        <a href="" ng-click="openModal_flag()">Flag</a>
+        <a href="" style="margin-left: 5px;" ng-click="toggleShareButton();">Share</a>
+        <!-- <a ng-if ="status === 'flagged'" href="">Flagged</a> -->
+        <a ng-if = "owner" style="margin-left: 5px;" href="edit/{{post_id}}">Edit</a>
+        <a ng-if = "owner" style="margin-left: 5px;" ng-click="delete()" href="">Delete</a>
+        <div class="likeDislike" style="margin-left: 5px;" ng-click="likePost(currentPost.data._id);"><img src="/app-content/images/like.png"> Like | {{currentPost.data.like}}</div>
+        <div class="likeDislike" ng-click="dislikePost(currentPost.data._id);"><img src="/app-content/images/dislike.png"> | {{currentPost.data.dislike}}</div>
+      </div>
+      <!-- href="#delete/{{post_id}}" -->
+      <div ng-show="showShareButtons == true">
+        <a href="" class="fa fa-twitter"
+        socialshare
+        socialshare-provider="twitter"
+        socialshare-text="{{title}}"
+        socialshare-hashtags="healthyflingpost"
+        socialshare-url="{{currentPath}}">
+      </a>
+      <a href="" class="fa fa-facebook"
+      socialshare
+      socialshare-provider="facebook"
+      socialshare-text="{{title}}"
+      socialshare-hashtags="healthyflingpost"
+      socialshare-url="{{currentPath}}">
+    </a>
+    <a href="" class="fa fa-linkedin"
+    socialshare
+    socialshare-provider="linkedin"
+    socialshare-text="{{title}}"
+    socialshare-description="{{message}}"
+    socialshare-source="healthyflingpost"
+    socialshare-url="{{currentPath}}">
+  </a>
+  <a href="" class="fa fa-reddit"
+  socialshare
+  socialshare-provider="reddit"
+  socialshare-text="{{title}}"
+  socialshare-url="{{currentPath}}">
+</a>
+<a href="" class="fa fa-google"
+socialshare
+socialshare-provider="google"
+socialshare-url="{{currentPath}}">
+</a>
+<a href="" class="fa fa-pinterest"
+socialshare
+socialshare-provider="pinterest"
+socialshare-text="{{title}}"
+socialshare-url="{{currentPath}}">
+</a>
+<a href="" class="fa fa-tumblr"
+socialshare
+socialshare-provider="tumblr"
+socialshare-text="{{title}}"
+socialshare-url="{{currentPath}}">
+</a>
+<a href="" class="fa fa-xing"
+socialshare
+socialshare-provider="xing"
+socialshare-text="{{title}}"
+socialshare-url="{{currentPath}}">
+</a>
+<a href="mailto:?Subject={{title}}&body={{currentPath}}" class="fa fa-envelope"
+socialshare
+socialshare-provider="email"
+socialshare-subject="{{title}}"
+socialshare-body="{{currentPath}}">
+</a>
+<a href="" class="fa fa-whatsapp"
+socialshare
+socialshare-provider="whatsapp"
+socialshare-text="{{title}}"
+socialshare-url="{{currentPath}}">
+</a>
+</div>
+
+<div class="gallery_slider clearfix" ng-if = "files.length > 0 || embed != '' || city || zip" style="padding-bottom:15px;">
+  <div class="galery_full">
+    <a ng-if="!showVideo && !showMap && mainImage && mainImage.secure_url" href="{{currentPost.data.page.url}}/media/photo/{{mainImage._id}}" style="padding: 0;" target="_blank">
+      <img src="{{mainImage.secure_url}}" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+    </a>
+    <p style="overflow-wrap: break-word;" ng-if="!showVideo && !showMap && mainImage && mainImage.signature"><strong>{{mainImage.signature}}</strong></p>
+    <div ng-if="showVideo && !iframe && !showMap">
+      <iframe width="560" height="315" src="{{embed}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <p style="overflow-wrap: break-word;"><strong>{{embedDescription}}</strong></p>
+    </div>
+    <div ng-if="showVideo && iframe && !showMap" ng-bind-html="embed | unsafe">
+    </div>
+    <div ng-if="!showVideo && !iframe && showMap && zip">
+      <iframe width="560" height="315" frameborder="0" style="border:0" src="{{zipURL}}" allowfullscreen></iframe>
+    </div>
+    <div ng-if="!showVideo && !iframe && showMap && city">
+      <iframe width="560" height="315" frameborder="0" style="border:0" src="{{cityURL}}" allowfullscreen></iframe>
+    </div>
+  </div>
+  <div class="gallery_thumb">
+    <ul>
+      <li ng-repeat="item in files">
+        <a href="" ng-click = "changeMainImage(item,false);" >
+          <img src="{{ item.secure_url}}" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+        </a>
+      </li>
+      <li ng-if = "embed != ''">
+        <a href="" ng-click = "changeMainImage(embed,true);" >
+          <img src="app-content/images/video-placeholder.png" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+        </a>
+      </li>
+      <li ng-if = "city || zip">
+        <a href="" ng-click = "changeMainImage(null,false,true);" >
+          <img src="app-content/images/map.png" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="created_section">
+  <h4 style="word-wrap: break-word;" ng-bind-html="message | unsafe"></h4>
+  <div class="linkBlock" style="margin-left: 0;" ng-show="currentPost.data.sharedLink">
+      <a href="{{currentPost.data.sharedData.url}}" target="_blank" class="mobileMaxWidth zeroPaddingBg">
+          <img ng-show="currentPost.data.sharedData.image" src="{{currentPost.data.sharedData.image}}" alt="" />
+          <div class="mobileMaxWidth grayBg">
+              <p class="linkURL">{{currentPost.data.sharedData.domain}}</p>
+              <p class="linkTitle">{{currentPost.data.sharedData.title}}</p>
+          </div>
+      </a>
+  </div>
+  <!-- <div ng-repeat="item in currentPost.data.embedSocial">
+      <div ng-bind-html="item | unsafe" ng-show="item !== ''"></div>
+  </div> -->
+  <div class="created_tag_section">
+    <p style= "font-size: 15px;font-weight: 500;">Posted: <time am-time-ago="created"></time></p>
+  </div>
+</div>
+
+
+<div id="st-2">
+  <div ng-click="react('like', currentPost.data._id)" class="st-btn" data-reaction="slight_smile">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" enable-background="new 0 0 64 64">
+      <circle cx="32" cy="32" r="30" fill="#ffdd67"></circle><g fill="#664e27"><circle cx="20.5" cy="26.6" r="5"></circle><circle cx="43.5" cy="26.6" r="5"></circle><path d="m44.6 40.3c-8.1 5.7-17.1 5.6-25.2 0-1-.7-1.8.5-1.2 1.6 2.5 4 7.4 7.7 13.8 7.7s11.3-3.6 13.8-7.7c.6-1.1-.2-2.3-1.2-1.6"></path></g>
+    </svg>
+    <span class="st-count">{{currentPost.data.reactions.like}}</span>
+    <span class="st-text">
+      LIKE
+    </span>
+  </div>
+  <div ng-click="react('love', currentPost.data._id)" class="st-btn" data-reaction="heart_eyes">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" enable-background="new 0 0 64 64">
+      <path d="M62,32c0,16.6-13.4,30-30,30C15.4,62,2,48.6,2,32C2,15.4,15.4,2,32,2C48.6,2,62,15.4,62,32z" fill="#ffdd67"></path><g fill="#f46767"><path d="m61.8 13.2c-.5-2.7-2-4.9-4.5-5.6-2.7-.7-5.1.3-7.4 2.7-1.3-3.6-3.3-6.3-6.5-7.7-3.2-1.4-6.4-.4-8.4 2.1-2.1 2.6-2.9 6.7-.7 12 2.1 5 11.4 15 11.7 15.3.4-.2 10.8-6.7 13.3-9.9 2.5-3.1 3-6.2 2.5-8.9"></path><path d="m29 4.7c-2-2.5-5.2-3.5-8.4-2.1-3.2 1.4-5.2 4.1-6.5 7.7-2.4-2.3-4.8-3.4-7.5-2.6-2.4.7-4 2.9-4.5 5.6-.5 2.6.1 5.8 2.5 8.9 2.6 3.1 13 9.6 13.4 9.8.3-.3 9.6-10.3 11.7-15.3 2.2-5.3 1.4-9.3-.7-12"></path></g><path d="m49 38.1c0-.8-.5-1.8-1.8-2.1-3.5-.7-8.6-1.3-15.2-1.3-6.6 0-11.7.7-15.2 1.3-1.4.3-1.8 1.3-1.8 2.1 0 7.3 5.6 14.6 17 14.6 11.4-.1 17-7.4 17-14.6" fill="#664e27"></path><path d="m44.7 38.3c-2.2-.4-6.8-1-12.7-1-5.9 0-10.5.6-12.7 1-1.3.2-1.4.7-1.3 1.5.1.4.1 1 .3 1.6.1.6.3.9 1.3.8 1.9-.2 23-.2 24.9 0 1 .1 1.1-.2 1.3-.8.1-.6.2-1.1.3-1.6 0-.8-.1-1.3-1.4-1.5" fill="#fff"></path>
+    </svg>
+    <span class="st-count">{{currentPost.data.reactions.love}}</span>
+    <span class="st-text">
+      LOVE
+    </span>
+  </div>
+  <div ng-click="react('lol', currentPost.data._id)" class="st-btn" data-reaction="laughing">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" enable-background="new 0 0 64 64">
+      <circle cx="32" cy="32" r="30" fill="#ffdd67"></circle><g fill="#664e27"><path d="m51.7 19.4c.6.3.3 1-.2 1.1-2.7.4-5.5.9-8.3 2.4 4 .7 7.2 2.7 9 4.8.4.5-.1 1.1-.5 1-4.8-1.7-9.7-2.7-15.8-2-.5 0-.9-.2-.8-.7 1.6-7.3 10.9-10 16.6-6.6"></path><path d="m12.3 19.4c-.6.3-.3 1 .2 1.1 2.7.4 5.5.9 8.3 2.4-4 .7-7.2 2.7-9 4.8-.4.5.1 1.1.5 1 4.8-1.7 9.7-2.7 15.8-2 .5 0 .9-.2.8-.7-1.6-7.3-10.9-10-16.6-6.6"></path><path d="m49.7 34.4c-.4-.5-1.1-.4-1.9-.4-15.8 0-15.8 0-31.6 0-.8 0-1.5-.1-1.9.4-3.9 5 .7 19.6 17.7 19.6 17 0 21.6-14.6 17.7-19.6"></path></g><path d="m33.8 41.7c-.6 0-1.5.5-1.1 2 .2.7 1.2 1.6 1.2 2.8 0 2.4-3.8 2.4-3.8 0 0-1.2 1-2 1.2-2.8.3-1.4-.6-2-1.1-2-1.6 0-4.1 1.7-4.1 4.6 0 3.2 2.7 5.8 6 5.8s6-2.6 6-5.8c-.1-2.8-2.7-4.5-4.3-4.6" fill="#4c3526"></path><path d="m24.3 50.7c2.2 1 4.8 1.5 7.7 1.5s5.5-.6 7.7-1.5c-2.1-1.1-4.7-1.7-7.7-1.7s-5.6.6-7.7 1.7" fill="#ff717f"></path><path d="m47 36c-15 0-15 0-29.9 0-2.1 0-2.1 4-.1 4 10.4 0 19.6 0 30 0 2 0 2-4 0-4" fill="#fff"></path>
+    </svg>
+    <span class="st-count">{{currentPost.data.reactions.lol}}</span>
+    <span class="st-text">
+      LOL
+    </span>
+  </div>
+  <div ng-click="react('wow', currentPost.data._id)" class="st-btn" data-reaction="astonished">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" enable-background="new 0 0 64 64">
+      <circle cx="32" cy="32" r="30" fill="#ffdd67"></circle><circle cx="19" cy="29" r="11" fill="#fff"></circle><path d="m24 29c0 2.8-2.2 5-5 5-2.8 0-5-2.2-5-5s2.2-5 5-5c2.8 0 5 2.2 5 5" fill="#664e27"></path><path d="m56 29c0 6.1-4.9 11-11 11-6.1 0-11-4.9-11-11 0-6.1 4.9-11 11-11 6.1 0 11 4.9 11 11" fill="#fff"></path><path d="m50 29c0 2.8-2.2 5-5 5-2.8 0-5-2.2-5-5s2.2-5 5-5c2.8 0 5 2.2 5 5" fill="#664e27"></path><g fill="#917524"><path d="m50.2 15.8c-3.2-2.7-7.5-3.9-11.7-3.1-.6.1-1.1-2-.4-2.2 4.8-.9 9.8.5 13.5 3.6.6.5-1 2.1-1.4 1.7"></path><path d="m25.5 12.5c-4.2-.7-8.5.4-11.7 3.1-.4.4-2-1.2-1.4-1.7 3.7-3.2 8.7-4.5 13.5-3.6.7.2.2 2.3-.4 2.2"></path></g><circle cx="32" cy="49" r="9" fill="#664e27"></circle><path d="m26 46c1.2-2.4 3.4-4 6-4 2.6 0 4.8 1.6 6 4h-12" fill="#fff"></path>
+    </svg>
+    <span class="st-count">{{currentPost.data.reactions.wow}}</span>
+    <span class="st-text">
+      WOW
+    </span>
+  </div>
+  <div ng-click="react('sad', currentPost.data._id)" class="st-btn" data-reaction="sob">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" enable-background="new 0 0 64 64">
+      <g fill="#65b1ef"><ellipse cx="17.5" cy="59.9" rx="12.5" ry="1.5"></ellipse><ellipse cx="44" cy="60.2" rx="18" ry="1.8"></ellipse></g><circle cx="32" cy="32" r="30" fill="#ffdd67"></circle><path d="m44.7 46c-1.4-3.6-4.8-6-12.7-6-8 0-11.3 2.4-12.7 6-.7 1.9.3 5 .3 5 1.3 3.9 1.1 5 12.4 5 11.3 0 11.1-1.1 12.4-5 0 0 1.1-3.1.3-5" fill="#664e27"></path><path d="m41 45c.1-.3 0-.6-.2-.8 0 0-2-2.2-8.8-2.2-6.8 0-8.8 2.2-8.8 2.2-.2.1-.2.5-.2.8l.2.6c.1.3.3.5.5.5h16.6c.2 0 .5-.2.5-.5l.2-.6" fill="#fff"></path><g fill="#65b1ef"><path d="m44.5 60.5c2.3 0 4.6 0 6.8 0 8.2-9.9-1.5-20 .9-29.8-2.3 0-4.6 2.5-6.8 2.5-3.2 9.5 7.3 17.4-.9 27.3"></path><path d="m19.5 60.5c-2.3 0-4.6 0-6.8 0-8.2-9.9 1.5-20-.9-29.8 2.3 0 4.6 2.5 6.8 2.5 3.2 9.5-7.3 17.4.9 27.3"></path></g><g fill="#917524"><path d="m40.7 18.3c3 3 7.2 4.5 11.4 4.1.6-.1.9 2.1.2 2.2-4.9.4-9.7-1.3-13.1-4.8-.6-.5 1.1-1.9 1.5-1.5"></path><path d="m12 22.4c4.2.4 8.4-1.1 11.4-4.1.4-.4 2.1 1 1.6 1.5-3.4 3.5-8.3 5.2-13.1 4.8-.9 0-.5-2.2.1-2.2"></path></g><g fill="#664e27"><path d="m35.9 30.3c4.2 8 12.7 8 16.9 0 .2-.4-.3-.6-1-1-4.2 3.3-11.1 3-14.9 0-.6.4-1.2.6-1 1"></path><path d="m11.2 30.3c4.2 8 12.7 8 16.9 0 .2-.4-.3-.6-1-1-4.2 3.3-11.1 3-14.9 0-.7.4-1.2.6-1 1"></path></g>
+    </svg>
+    <span class="st-count">{{currentPost.data.reactions.sad}}</span>
+    <span class="st-text">
+      SAD
+    </span>
+  </div>
+  <div ng-click="react('angry', currentPost.data._id)" class="st-btn st-last" data-reaction="rage">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" enable-background="new 0 0 64 64">
+      <circle cx="32" cy="32" r="30" fill="#ef5350"></circle><path d="m41 49.7c-5.8-4.8-12.2-4.8-18 0-.7.6-1.3-.4-.8-1.3 1.8-3.4 5.3-6.5 9.8-6.5s8.1 3.1 9.8 6.5c.5.8-.1 1.8-.8 1.3" fill="#302424"></path><path d="m10.2 24.9c-1.5 4.7.6 10 5.3 12.1 4.6 2.2 10 .5 12.7-3.7l-6.9-7.7-11.1-.7" fill="#fff"></path><g fill="#302424"><path d="m14.2 25.8c-1.4 2.9-.1 6.4 2.8 7.7 2.9 1.4 6.4.1 7.7-2.8 1-1.9-9.6-6.8-10.5-4.9"></path><path d="m10.2 24.9c1.6-1 3.5-1.5 5.4-1.5 1.9 0 3.8.5 5.6 1.3 1.7.8 3.3 2 4.6 3.4 1.2 1.5 2.2 3.2 2.4 5.1-1.3-1.3-2.6-2.4-4-3.4-1.4-1-2.8-1.8-4.2-2.4-1.5-.7-3-1.2-4.6-1.7-1.8-.3-3.4-.6-5.2-.8"></path></g><path d="m53.8 24.9c1.5 4.7-.6 10-5.3 12.1-4.6 2.2-10 .5-12.7-3.7l6.9-7.7 11.1-.7" fill="#fff"></path><g fill="#302424"><path d="m49.8 25.8c1.4 2.9.1 6.4-2.8 7.7-2.9 1.4-6.4.1-7.7-2.8-1-1.9 9.6-6.8 10.5-4.9"></path><path d="m53.8 24.9c-1.6-1-3.5-1.5-5.4-1.5-1.9 0-3.8.5-5.6 1.3-1.7.8-3.3 2-4.6 3.4-1.2 1.5-2.2 3.2-2.4 5.1 1.3-1.3 2.6-2.4 4-3.4 1.4-1 2.8-1.8 4.2-2.4 1.5-.7 3-1.2 4.6-1.7 1.8-.3 3.4-.6 5.2-.8"></path></g>
+    </svg>
+    <span class="st-count">{{currentPost.data.reactions.angry}}</span>
+    <span class="st-text">
+      ANGRY
+    </span>
+  </div>
+</div>
+
+
+<div ng-show = "windowWidth >= 752" style="display: inline-block;">
+  <div class="advertise">
+
+    <!-- JuicyAds v3.0 -->
+    <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+    <ins id="820410" data-width="728" data-height="102"></ins>
+    <script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':820410});</script>
+    <!--JuicyAds END-->
+
+  </div>
+</div>
+
+<div ng-show = "windowWidth < 752" style="display: inline-block;">
+  <div class="advertise">
+
+    <!-- JuicyAds v3.0 -->
+    <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+    <ins id="820411" data-width="300" data-height="62"></ins>
+    <script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':820411});</script>
+    <!--JuicyAds END-->
+
+  </div>
+</div>
+
+<div class="anonnymous_comment" ng-show = "anonymouscomment == 'enabled'">
+  <div class="anonnymous_typos">
+    <div class="comment_block">
+      <h4>Post a public comment for this post!</h4>
+      <div style="border: 2px solid #7e7e7e;">
+        <div class="comment_field">
+          <textarea style = "border: none;" class="cust_textarea" ng-model="commentmessage"></textarea>
+        </div>
+        <div class="file_upload" style="margin-left: 10px;margin-right: 10px;">
+          <ul>
+            <li>
+              <a href="javascript:void(0)">
+                <input type="file" class="cust_file wd_97" ng-file-model="vm.data.files" multiple style="color: transparent;" />
+                <i class="fa fa-picture-o"></i>
+              </a>
+            </li>
+            <li>
+              <a href="" ng-click="toggleEmbedButton();">
+                <i class="fa fa-file-video-o"></i>
+              </a>
+            </li>
+          </ul>
+          <div class="emmbed_video" style="background: #cdcbf5;clear: both;margin:0px;" ng-show = "showEmbedButtons == true">
+            <input type="text" placeholder='<iframe src="embed_url"></iframe>' class="embeded_area" ng-model="commentembed">
+          </div>
+          <div class="file_results">
+            <img ng-if = "loadingImage" src="app-content/images/imageLoader.gif" style="width: 100px;">
+            <div class="upload_item" ng-repeat="file in imageList"><div style="position: relative"><img class='img-responsive' src={{file.secure_url}} ng-init = "stopLoader();"><img src="app-content/images/closeIcon.png" style="position: absolute; top: 4px; right: 5px; cursor: pointer;" ng-click = "deleteImage($index);"/></div></div>
+          </div>
+        </div>
+      </div>
+      <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+    </div>
+    <div class="comments_counter" style="margin-top: 10px;">
+      <p><span>{{comments.length}}</span>comments</p>
+    </div>
+    <div class="notified_area">
+      <a href="" ng-click="toggleReplyNotify();">Get notified when someone comments to your comment(optional)</a>
+    </div>
+
+    <div class="comment_field" ng-show = "replyNotified == true">
+      <input id="email" name="email" type="text" placeholder="Your email" class="cust_email" ng-model="replyNotifiedEmail">
+    </div>
+    <div class="pdL">
+      <div class="reply_item" vc-recaptcha key="'6LdK608UAAAAAIIPni45gUqw9p_vn4mLa_CtlSlv'" ng-model="captcha"></div>
+    </div>
+    <div class="cust_sbt_outer text-left">
+      <input type="submit" value="Comment!" ng-click="addComment(post_id);">
+    </div>
+  </div>
+  <div class="reply_anonnymous">
+    <div class="reply_item_anony" ng-repeat="item in comments">
+      <span>Comment {{$index+1}}</span>
+      <a ng-if ="owner" href="" ng-click="deleteComment(item._id)">Delete</a>
+      <a ng-if = "item.status == 'active'" href="" ng-click="openCommentsModal_flag(item)">Flag</a>
+      <a ng-if ="owner" href="" ng-click="unflagComment(item._id)">Unflag</a>
+      <a ng-if ="owner" href="" ng-click="openCommentModalPoster(item,{})">Reply</a>
+      <a ng-if ="!owner" href="" ng-click="openCommentModal(item,{})">Reply</a>
+      <div class="likeDislike" style="margin-left: 5px;" ng-click="likeComment(item._id, false);"><img src="/app-content/images/like.png"> Like | {{item.like}}</div>
+      <div class="likeDislike" ng-click="dislikeComment(item._id, false);"><img src="/app-content/images/dislike.png"> | {{item.dislike}}</div>
+      <div class="reply_txt_anony">
+        <h5 ng-show = "item.status == 'active'"> {{item.body}}</h5>
+        <h5 ng-show = "item.status == 'inactive'" style="color: #8dc63f;"> The comment has been deleted</h5>
+        <h5 ng-show = "item.status == 'flagged'" style="color: #8dc63f;"> The comment has been flagged</h5>
+        <div class="upload_result clearfix" ng-if = "item.status == 'active' && (item.files.length > 0 || item.embed != '')">
+          <div class="galery_full">
+            <a href="{{commentsMainImage[$index].replace('/processed', '/files')}}" style="padding: 0;" target="_blank">
+              <img ng-if = "commentsMainImage[$index].indexOf('iframe') == -1" src="{{commentsMainImage[$index]}}" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+            </a>
+            <div ng-if ="item.embed != '' && commentsMainImage[$index].indexOf('iframe') > -1" ng-bind-html="item.embed | unsafe"></div>
+          </div>
+          <div class="gallery_thumb">
+            <ul>
+              <li ng-repeat="file in item.files">
+                <a ng-click = "changeCommentsMainImage(file.secure_url,$parent.$index);" href="">
+                  <img src="{{ file.secure_url}}" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+                </a>
+              </li>
+              <li ng-if = "item.embed != ''">
+                <a href="" ng-click = "changeCommentsMainImage(item.embed,$index);" >
+                  <img src="app-content/images/video-placeholder.png" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <p>Posted: <em><time am-time-ago="item.created"></time></em></p>
+      </div>
+
+      <!-- <div class="upload_result">
+      <div class="upload_block" ng-repeat="item in files">
+      <a href="{{ item.secure_url}}" target="blank">
+      <img src="{{ item.secure_url}}" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+    </a>
+  </div>
+  <div class="upload_block" ng-bind-html="embed | unsafe">
+</div>
+</div> -->
+<div ng-if = "item.replies">
+  <div class="posters_response" ng-repeat="reply in item.replies">
+    <span style="color:black;font-size: 15px;font-weight: normal;">Reply {{$index+1}}</span>
+    <span ng-if="reply.owner == 'poster'" style="font-size: 14px;font-weight: normal;">Posters response</span>
+    <span style="color:#886c6a;font-size: 15px;font-weight: normal;">{{reply.responseLabel}}</span>
+    <a ng-if ="owner" href="" ng-click="deleteReply(reply._id)">Delete</a>
+    <a ng-if = "reply.status == 'active'" href="" ng-click="openReplyModal_flag(reply)">Flag</a>
+    <a ng-if ="owner" href="" ng-click="unflagReply(reply._id)">Unflag</a>
+    <a ng-if ="!owner" href="" ng-click="openCommentModal(item,reply)">Reply</a>
+    <a ng-if ="owner" href="" ng-click="openCommentModalPoster(item,reply)">Reply</a>
+    <div class="likeDislike" style="margin-left: 5px;" ng-click="likeComment(reply._id, true);"><img src="/app-content/images/like.png"> Like | {{reply.like}}</div>
+    <div class="likeDislike" ng-click="dislikeComment(reply._id, true);"><img src="/app-content/images/dislike.png"> | {{reply.dislike}}</div>
+    <div class="posters_inr">
+      <h5 ng-show = "reply.status == 'active'" >{{reply.body}}</h5>
+      <h5 ng-show = "reply.status == 'inactive'" style="color: #8dc63f;">The reply has been deleted</h5>
+      <h5 ng-show = "reply.status == 'flagged'" style="color: #8dc63f;">The reply has been flagged</h5>
+
+      <div class="upload_result clearfix" ng-if = "reply.status == 'active' && (reply.files.length > 0 || reply.embed != '')">
+        <div class="galery_full">
+          <a href="{{replyMainImage[$parent.$parent.$index][$index].replace('/processed', '/files')}}" style="padding: 0;" target="_blank">
+            <img ng-show = "replyMainImage[$parent.$parent.$index][$index].indexOf('iframe') == -1" src="{{replyMainImage[$parent.$parent.$index][$index]}}" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+          </a>
+          <div ng-if ="reply.embed != '' && replyMainImage[$parent.$parent.$index][$index].indexOf('iframe') > -1" ng-bind-html="reply.embed | unsafe"></div>
+        </div>
+        <div class="gallery_thumb">
+          <ul>
+            <li ng-repeat="replyfile in reply.files">
+              <a ng-click = "changeReplyMainImage(replyfile.secure_url,$parent.$parent.$parent.$index, $parent.$index);" href="">
+                <img src="{{ replyfile.secure_url}}" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+              </a>
+            </li>
+            <li ng-if = "reply.embed != ''">
+              <a href="" ng-click = "changeReplyMainImage(reply.embed,$parent.$parent.$parent.$index, $index);" >
+                <img src="app-content/images/video-placeholder.png" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt=""/>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <p>posted <em><time am-time-ago="reply.created"></time></em></p>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="disabled_anonymous_text" ng-show = "anonymouscomment == 'disabled'">
+  <p><span><i class="fa fa-ban"></i></span>The poster has disabled public comments</p>
+</div>
+
+</div>
+</div>
+</div>
+
+
+<!-- gallery cnt ends-->

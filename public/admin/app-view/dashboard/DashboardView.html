@@ -1,0 +1,83 @@
+
+    <div class="dashboard_container clearfix" ng-controller="DashboardController">
+        <div class="dashboard_section">
+            <div class="sidenav">
+                <div class="dashboard_logo_block">
+                    <a href="" ng-click="vm.dashboard()" class="moltin_logo"><img src="app-content/images/logonew.png" alt=""></a>
+                    <a href="" ng-click="vm.dashboard()" class="moltin_logo_favicon"><img src="app-content/images/faviconnew.png" alt=""></a>
+                </div>
+                <div id="main-menu" class="main-menu collapse navbar-collapse">
+                    <ul class="primary_menu">
+                        <li class="menu-item dropdown">
+                            <a href="javascript:void(0)" class="dropdown-toggle"> <i class="fa fa-home"></i>
+                                <p>Home</p>
+                            </a>
+                        </li>
+                        <li class="menu-item dropdown">
+                            <a href="" ng-click="vm.search()" class="dropdown-toggle"><i class="fa fa-clipboard"></i><p>Personal Posts</p></a>
+                        </li>
+                        <li class="menu-item dropdown">
+                            <a href="" ng-click="vm.pagePosts()" class="dropdown-toggle"><i class="fa fa-clipboard"></i><p>Page Posts</p></a>
+                        </li>
+                        <li class="menu-item dropdown">
+                            <a href="" ng-click="vm.pages()" class="dropdown-toggle"><i class="fa fa-clipboard"></i><p>Pages</p></a>
+                        </li>
+                        <li class="menu-item dropdown">
+                            <a href="" ng-click="vm.flagged_search()" class="dropdown-toggle"> <i class="fa fa-inbox"></i>
+                                <p>Flagged Posts</p>
+                            </a>
+                        </li>
+                        <li class="menu-item dropdown">
+                            <a href="" ng-click="vm.users()" class="dropdown-toggle"><i class="fa fa-clipboard"></i><p>Users</p></a>
+                        </li>
+
+                    </ul>
+                    <ul class="secondary_menu">
+                        <li class="menu-item dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users" aria-hidden="true"></i><p>Account</p></a>
+                        </li>
+                        <li class="menu-item dropdown">
+                            <a href="" ng-click="vm.logout()" class="dropdown-toggle">
+                                <i class="fa fa-sign-out"></i><p>Log out</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--right-section-->
+
+        <div class="right_section home_rht">
+
+            <div class="dashboard_body">
+                <h1>Welcome To Admin Portal</h1>
+            </div>
+            <!-- selection-section starts-->
+            <div class="select_sec">
+                  <div class="select_inr">
+                    <div class="select_item clearfix">
+                        <div class="select_area">
+                          <select name="number" class="block" ng-model="vm.state" ng-options="x for x in states" ng-change="changeListInCtrl(vm.state);">
+                          </select>
+                        </div>
+                        <div class="select_area">
+                          <select name="number" id="region" class="block" ng-model="vm.region" ng-options="x for x in regions">
+                          </select>
+                        </div>
+                        <div class="select_area">
+                          <select name="number" id="category" class="block" ng-model="vm.category" ng-options="x for x in categories">
+                          </select>
+                        </div>
+                        <div class="select_sbt">
+                           <input type="submit" placeholder="Submit" ng-click ="vm.search()">
+                        </div>
+                    </div>
+              </div>
+            </div>
+    <!-- selection-section ends-->
+
+        </div>
+
+    </div>
+        <!--end-all section-->

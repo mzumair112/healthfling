@@ -1,0 +1,161 @@
+<!-- selection-section starts-->
+    <div class="select_sec" ng-controller = "ContactController" >
+      <div class="container">
+          <div class="select_inr">
+            <div class="select_item" ng-class="{select_three: vm.country != 'United States' && vm.country != 'Canada' && vm.country != 'Country'}">
+                <div class="select_area">
+                  <select name="number" class="block" ng-model="vm.country" ng-options="x for x in countries"  ng-change="changeStateListInCtrl(vm.country);vm.state = states[0];vm.region = regions[0];" ng-init = "changeStateListInCtrl(vm.country);">
+                  </select>
+                </div>
+                <div class="select_area" ng-show ="vm.country == 'United States' || vm.country == 'Canada' || vm.country == 'Country'">
+                  <select name="number" class="block" ng-model="vm.state" ng-options="x for x in states" ng-change="changeListInCtrl(vm.state);" ng-init = "changeListInCtrl(vm.state)">
+                  </select>
+                </div>
+                <div class="select_area">
+                  <select name="number" id="region" class="block" ng-model="vm.region" ng-options="x for x in regions" ng-init="vm.region = vm.region || 'Region'">
+                  </select>
+                </div>
+                <div class="select_area">
+                  <select name="number" id="category" class="block" ng-model="vm.category" ng-options="x for x in categories" ng-init="vm.category = vm.category || 'Category'">
+                  </select>
+                </div>
+                <!-- <div class="select_area">
+                  <select name="number" id="state" class="block" ng-model="vm.state">
+                    <option selected="selected">State</option>
+                    <option>California</option>
+                    <option>State2</option>
+                    <option>State3</option>
+                    <option>State4</option>
+                    <option>State5</option>
+                    <option>State6</option>
+                  </select>
+                </div>
+                <div class="select_area">
+                  <select name="number" id="region" class="block" ng-model="vm.region">
+                    <option selected="selected">Region</option>
+                    <option>Los Angelas</option>
+                    <option>Region2</option>
+                    <option>Region3</option>
+                    <option>Region4</option>
+                    <option>Region5</option>
+                    <option>Region6</option>
+                  </select>
+                </div>
+                <div class="select_area">
+                  <select name="number" id="category" class="block" ng-model="vm.category">
+                    <option selected="selected">Category</option>
+                    <option>Men Seeking Woman</option>
+                    <option>Category2</option>
+                    <option>Category3</option>
+                    <option>Category4</option>
+                    <option>Category5</option>
+                    <option>Category6</option>
+                  </select>
+                </div> -->
+                <div class="select_sbt">
+                   <input type="submit" placeholder="Submit" ng-click ="vm.search()">
+                </div>
+                <div ng-show = "vm.savedPreference == true" class="loc_block">
+                  <a href="" ng-click="vm.unlockPreference()"><i class="fa fa-lock"></i></a>
+                </div>
+                <div ng-hide = "vm.savedPreference == true" class="unloc_block">
+                  <a href="" ng-click="vm.lockPreference()"><i class="fa fa-unlock"></i></a>
+                </div>
+            </div>
+            <div class="add_post post_bk pages_button" ng-if="windowWidth > 991 && isLoggedIn">
+                <input type="submit" value="LOG-OUT" ng-click="vm.logout()" style="background: #42a2e8; border: #f80101;">
+            </div>
+            <div class="add_post post_bk login_signup pages_button" ng-if="windowWidth > 991 && !isLoggedIn">
+              <input type="submit" value="LOG-IN/SIGN-UP" ng-click="vm.login()" style="background: #42a2e8; border: #f80101;">
+            </div>
+            <div class="add_post post_bk pages_button" ng-if="windowWidth > 991">
+              <input type="submit" value="PAGES" ng-click="vm.pages()" style="background: #f80101; border: #f80101;">
+            </div>
+
+            <div class="add_post post_bk">
+              <input type="submit" value="Post an AD" ng-click="vm.post()">
+            </div>
+            <div class="add_post post_bk pages_button" ng-if="windowWidth < 991">
+              <input type="submit" value="PAGES" ng-click="vm.pages()" style="background: #f80101; border: #f80101;">
+            </div>
+            <div class="add_post post_bk login_signup pages_button" ng-if="windowWidth < 991 && !isLoggedIn">
+              <input type="submit" value="LOG-IN/SIGN-UP" ng-click="vm.login()" style="background: #42a2e8; border: #f80101;">
+            </div>
+            <div class="add_post post_bk pages_button" ng-if="windowWidth < 991 && isLoggedIn">
+                <input type="submit" value="LOG-OUT" ng-click="vm.logout()" style="background: #42a2e8; border: #f80101;">
+            </div>
+          </div>
+      </div>
+    </div>
+    <!-- selection-section ends-->
+
+   <!-- add_details -->
+   <section class="add_details">
+      <div class="container">
+          <div class="add_hdr">
+            <h2>Contact</h2>
+          </div>
+          <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+          <div class="mandatory_section" ng-if = "showError">
+            <h3>Important</h3>
+            <p ng-if = "showRequiredNameError">- Please enter your name.</p>
+            <p ng-if = "showRequiredEmailError">- Please enter a valid email.</p>
+            <p ng-if = "showRequiredSubjectError">- Please enter subject of the message.</p>
+            <p ng-if = "showRequiredMessageError">- Please enter body of the message.</p>
+            <p ng-if = "showCaptchaError">- Please accept the Recaptcha</p>
+          </div>
+          <div class="bio_sec">
+            <div class="col-md-7">
+                    <form class="form-horizontal" action="" method="post">
+
+                      <!-- Name input-->
+                      <div class="form-group">
+                        <label class="col-md-3 control-label" for="name">Name</label>
+                        <div class="col-md-9 mand">
+                          <input id="name" name="name" type="text" placeholder="Your name" class="form-control" ng-model="name">
+                        </div>
+                      </div>
+
+                      <!-- Email input-->
+                      <div class="form-group">
+                        <label class="col-md-3 control-label" for="email">E-mail</label>
+                        <div class="col-md-9 mand">
+                          <input id="email" name="email" type="text" placeholder="Your email" class="form-control" ng-model="email">
+                        </div>
+                      </div>
+
+                      <!-- Email input-->
+                      <div class="form-group">
+                        <label class="col-md-3 control-label" for="email">Subject</label>
+                        <div class="col-md-9 mand">
+                          <input id="email" name="email" type="text" placeholder="Your subject" class="form-control" ng-model="subject">
+                        </div>
+                      </div>
+
+                      <!-- Message body -->
+                      <div class="form-group">
+                        <label class="col-md-3 control-label" for="message">Body</label>
+                        <div class="col-md-9 mand">
+                          <textarea class="form-control" id="message" name="message" placeholder="Please enter your message here..." rows="5" ng-model="message"></textarea>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="col-md-3 control-label" for="message">I agree to terms.</label>
+                        <div class="col-md-9">
+                          <div vc-recaptcha key="'6LdK608UAAAAAIIPni45gUqw9p_vn4mLa_CtlSlv'" ng-model="captcha"></div>
+                        </div>
+                      </div>
+
+                      <!-- Form actions -->
+                      <div class="form-group">
+                        <div class="col-md-12 text-right">
+                          <button type="submit" class="btn btn-primary btn-lg" ng-click="notify();">Submit</button>
+                        </div>
+                      </div>
+                    </form>
+            </div>
+
+          </div>
+      </div>
+   </section>

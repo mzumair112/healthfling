@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+    <html ng-app="app" lang="en">
+
+    <head>
+        <base href="/" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="juicyads-site-verification" content="d4472d601d72e566c9522359a9c7a151">
+        <meta name="google-site-verification" content="36dI5CgjdaAGxxNnUedO03KIImVTteVzf7oDvh3R1qg" />
+        <meta name="juicyads-site-verification" content="c0cef19283e5752bc60dcbaacca925db">
+
+        <title ng-bind="metaservice.title()">Healthy Fling</title>
+
+        <meta property="og:title" content="{{ metaservice.title() }}">
+        <meta name="twitter:title" content="{{ metaservice.title() }}">
+
+        <meta name="description" content="{{ metaservice.description() }}">
+        <meta property="og:description" content="{{ metaservice.description() }}">
+        <meta name="twitter:description" content="{{ metaservice.description() }}">
+
+        <meta property="og:image" content="{{ metaservice.image() }}">
+        <meta name="twitter:image" content="{{ metaservice.image() }}">
+
+        <!-- <meta property="og:title" content="Healthy Fling">
+        <meta name="twitter:title" content="Healthy Fling">
+
+        <meta property="og:description" content="Your new favorite personals site to create, search and reply to personal ads.">
+        <meta name="twitter:description" content="Your new favorite personals site to create, search and reply to personal ads.">
+
+        <meta property="og:image" content="https://www.healthyfling.com/app-content/images/logo.png">
+        <meta name="twitter:image" content="https://www.healthyfling.com/app-content/images/logo.png"> -->
+
+        <meta property="og:type" content="article">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@healthyfling">
+        <link rel="icon" type="image/png" href="app-content/images/favicon.png" />
+        <link href="dist/app_lib.css" rel="stylesheet" type="text/css">
+        <link href="app-content/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="dist/app.css" rel="stylesheet" type="text/css">
+
+        <script src="https://www.google.com/recaptcha/api.js"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127381209-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-127381209-1');
+        </script>
+
+    </head>
+
+    <body window-size>
+
+    <!--loader-->
+    <div id="preloader" ng-show="loading">
+        <div id="status">
+            <span>
+                <img src="app-content/images/pre-loader.gif" alt="">
+            </span>
+        </div>
+    </div>
+    <!--end loader-->
+      <!-- Header-section starts -->
+    <!-- <div class="note" style=" background-color: #f00; padding: 15px 0; color: #fff; font-size: 17px; text-align: center; font-family: 'Raleway', sans-serif; font-weight: 700;letter-spacing: 0.3px;">The website will be down between 2am - 4am California Time on Wednesday due to scheduled maintenance.</div> -->
+    <header class="header_section">
+        <div class="container">
+            <div class="navbar_brand">
+              <a href="/">
+                <img src="app-content/images/logo.png" alt=""/>
+              </a>
+            </div>
+        </div>
+    </header>
+    <!-- Header-section ends -->
+
+
+
+    <div ng-view></div>
+
+    <!-- footer section starts -->
+    <footer class="footer_section">
+      <div class="container">
+        <div class="footer_nav">
+          <ul>
+              <li>
+                <a href="/">
+                    Home
+                </a>
+              </li>
+              <li>
+                <a href="terms">
+                    Terms of Service
+                </a>
+              </li>
+               <li>
+                <a href="policy">
+                    Privacy policy
+                </a>
+              </li>
+               <li>
+                <a href="disclaimer">
+                    Disclaimer
+                </a>
+              </li>
+               <li>
+                <a href="#contact">
+                    Contact/Feedback
+                </a>
+              </li>
+               <li>
+                <a href="#post">
+                    Post an Ad
+                </a>
+              </li>
+              <li>
+                <a href="winmoney">
+                    Win Money
+                </a>
+              </li>
+          </ul>
+        </div>
+        <div class="footer_btm">
+            <div class="copy_right">
+                <p>Copyright © 2014-2019 HealthyFling, LLC</p>
+            </div>
+            <!-- <div class="follow_sec">
+                <p>Follow us on
+                    <a href="http://instagram.com/officialhealthyfling" target="_blank">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                </p>
+            </div> -->
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- footer section ends -->
+
+
+    <!-- Scripts -->
+    <!-- <script src="app-lib/jquery-1.11.1.min.js"></script>
+
+    <script src="app-lib/jquery-2.1.4.min.js"></script>
+     -->
+    <!--Plugins-->
+    <!-- <script src="app-lib/bootstrap.min.js"></script>
+    <script src="app-lib/jquery-ui.min.js"></script>
+ -->
+    <!--Custom-->
+<!--     <script src="app-lib/custom.js"></script>
+
+
+    <script src="app-lib/angular.min.js"></script>
+    <script src="app-lib/ui-bootstrap-tpls.min.js"></script>
+    <script src="app-lib/angular-route.min.js"></script>
+    <script src="app-lib/angular-cookies.min.js"></script>
+    <script src="app-lib/moment.min.js"></script>
+    <script src="app-lib/angular-moment.min.js"></script>
+    <script src="app-lib/angular-recaptcha.min.js"></script>
+
+    <script src="app-lib/angular-socialshare.min.js"></script>
+ -->
+    <script src="dist/app_lib.js"></script>
+
+    <script src="app.js"></script>
+
+    <!-- <script src="dist/app_services.js"></script>
+
+    <script src="dist/app_controllers.js"></script> -->
+
+    <script src="app-services/HttpService.js"></script>
+    <script src="app-services/FlashService.js"></script>
+
+    <script src="app-view/home/homeController.js"></script>
+    <script src="app-view/login/loginController.js"></script>
+    <script src="app-view/post/postController.js"></script>
+    <script src="app-view/pages/pagesController.js"></script>
+    <script src="app-view/search/searchController.js"></script>
+    <script src="app-view/contact/contactController.js"></script>
+    <script src="app-view/response/responseController.js"></script>
+    <script src="app-view/delete/deleteController.js"></script>
+    <script src="app-view/page/pageController.js"></script>
+    <script src="app-view/expired/expiredController.js"></script>
+    <script src="app-view/error/errorController.js"></script>
+    <script src="app-view/reply/replyController.js"></script>
+    <script src="app-view/comment/commentController.js"></script>
+    <script src="app-view/edit/editController.js"></script>
+    <script src="app-view/flag/flagController.js"></script>
+    <script src="app-view/detail/detailController.js"></script>
+
+    <script type="text/javascript"  charset="utf-8">
+    // Place this code snippet near the footer of your page before the close of the /body tag
+    // LEGAL NOTICE: The content of this website and all associated program code are protected under the Digital Millennium Copyright Act. Intentionally circumventing this code may constitute a violation of the DMCA.
+
+    eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}(';k P=\'\',29=\'1W\';1G(k i=0;i<12;i++)P+=29.10(C.N(C.K()*29.G));k 2G=2,38=4y,2r=1V,3b=4,2z=D(t){k o=!1,i=D(){z(q.1j){q.35(\'2O\',e);F.35(\'1U\',e)}T{q.32(\'2M\',e);F.32(\'21\',e)}},e=D(){z(!o&&(q.1j||4z.2v===\'1U\'||q.2W===\'2R\')){o=!0;i();t()}};z(q.2W===\'2R\'){t()}T z(q.1j){q.1j(\'2O\',e);F.1j(\'1U\',e)}T{q.2L(\'2M\',e);F.2L(\'21\',e);k n=!1;2N{n=F.4B==4C&&q.26}2T(r){};z(n&&n.2K){(D d(){z(o)H;2N{n.2K(\'16\')}2T(e){H 4D(d,50)};o=!0;i();t()})()}}};F[\'\'+P+\'\']=(D(){k t={t$:\'1W+/=\',4E:D(e){k d=\'\',a,n,o,c,s,l,i,r=0;e=t.e$(e);1f(r<e.G){a=e.1a(r++);n=e.1a(r++);o=e.1a(r++);c=a>>2;s=(a&3)<<4|n>>4;l=(n&15)<<2|o>>6;i=o&63;z(2X(n)){l=i=64}T z(2X(o)){i=64};d=d+V.t$.10(c)+V.t$.10(s)+V.t$.10(l)+V.t$.10(i)};H d},13:D(e){k n=\'\',a,l,c,s,r,i,d,o=0;e=e.1o(/[^A-4x-4F-9\\+\\/\\=]/g,\'\');1f(o<e.G){s=V.t$.1P(e.10(o++));r=V.t$.1P(e.10(o++));i=V.t$.1P(e.10(o++));d=V.t$.1P(e.10(o++));a=s<<2|r>>4;l=(r&15)<<4|i>>2;c=(i&3)<<6|d;n=n+S.U(a);z(i!=64){n=n+S.U(l)};z(d!=64){n=n+S.U(c)}};n=t.n$(n);H n},e$:D(t){t=t.1o(/;/g,\';\');k n=\'\';1G(k o=0;o<t.G;o++){k e=t.1a(o);z(e<1C){n+=S.U(e)}T z(e>4H&&e<4I){n+=S.U(e>>6|4J);n+=S.U(e&63|1C)}T{n+=S.U(e>>12|2u);n+=S.U(e>>6&63|1C);n+=S.U(e&63|1C)}};H n},n$:D(t){k o=\'\',e=0,n=4K=1A=0;1f(e<t.G){n=t.1a(e);z(n<1C){o+=S.U(n);e++}T z(n>4L&&n<2u){1A=t.1a(e+1);o+=S.U((n&31)<<6|1A&63);e+=2}T{1A=t.1a(e+1);2p=t.1a(e+2);o+=S.U((n&15)<<12|(1A&63)<<6|2p&63);e+=3}};H o}};k a=[\'4M==\',\'4N\',\'4O=\',\'4G\',\'4v\',\'4l=\',\'4u=\',\'4d=\',\'4e\',\'4f\',\'4g=\',\'4h=\',\'4i\',\'4j\',\'4c=\',\'4k\',\'4m=\',\'4n=\',\'4o=\',\'4p=\',\'4q=\',\'4r=\',\'4s==\',\'4t==\',\'4P==\',\'4w==\',\'4Q=\',\'5d\',\'5f\',\'5g\',\'5h\',\'5i\',\'5j\',\'5k==\',\'5l=\',\'5e=\',\'5m=\',\'5o==\',\'5p=\',\'5q\',\'5r=\',\'5s=\',\'5t==\',\'5u=\',\'5v==\',\'5n==\',\'5c=\',\'52=\',\'5b\',\'4a==\',\'4T==\',\'4U\',\'4V==\',\'4W=\'],p=C.N(C.K()*a.G),Y=t.13(a[p]),w=Y,Z=1,W=\'#4X\',r=\'#4Y\',g=\'#4Z\',v=\'#4S\',A=\'\',f=\'51!\',y=\'53 54 55 56\\\'57 58 59 2o 2h. 5a\\\'s 4R.  4b 47\\\'t?\',b=\'49 3g 3e-3i, 3t 3s\\\'t 3q 3l V 3k 3h.\',s=\'I 3m, I 3o 3p 3j 2o 2h.  3u 3v 3w!\',o=0,u=0,n=\'3x.3y\',l=0,M=e()+\'.3a\';D h(t){z(t)t=t.1F(t.G-15);k o=q.2y(\'3r\');1G(k n=o.G;n--;){k e=S(o[n].1L);z(e)e=e.1F(e.G-15);z(e===t)H!0};H!1};D m(t){z(t)t=t.1F(t.G-15);k e=q.3d;x=0;1f(x<e.G){1i=e[x].1p;z(1i)1i=1i.1F(1i.G-15);z(1i===t)H!0;x++};H!1};D e(t){k n=\'\',o=\'1W\';t=t||30;1G(k e=0;e<t;e++)n+=o.10(C.N(C.K()*o.G));H n};D i(o){k i=[\'3f\',\'3z==\',\'3n\',\'3B\',\'2w\',\'3S==\',\'3U=\',\'3V==\',\'3W=\',\'3X==\',\'3Y==\',\'3Z==\',\'3T\',\'41\',\'43\',\'2w\'],r=[\'2l=\',\'44==\',\'45==\',\'46==\',\'48=\',\'42\',\'3R=\',\'3C=\',\'2l=\',\'3Q\',\'3P==\',\'3O\',\'3N==\',\'3M==\',\'3L==\',\'3K=\'];x=0;1E=[];1f(x<o){c=i[C.N(C.K()*i.G)];d=r[C.N(C.K()*r.G)];c=t.13(c);d=t.13(d);k a=C.N(C.K()*2)+1;z(a==1){n=\'//\'+c+\'/\'+d}T{n=\'//\'+c+\'/\'+e(C.N(C.K()*20)+4)+\'.3a\'};1E[x]=1X 1Y();1E[x].1Z=D(){k t=1;1f(t<7){t++}};1E[x].1L=n;x++}};D L(t){};H{36:D(t,r){z(3J q.O==\'3I\'){H};k o=\'0.1\',r=w,e=q.1b(\'1u\');e.17=r;e.j.1g=\'1R\';e.j.16=\'-1m\';e.j.11=\'-1m\';e.j.1e=\'2a\';e.j.X=\'3H\';k a=q.O.2V,d=C.N(a.G/2);z(d>15){k n=q.1b(\'2c\');n.j.1g=\'1R\';n.j.1e=\'1t\';n.j.X=\'1t\';n.j.11=\'-1m\';n.j.16=\'-1m\';q.O.3G(n,q.O.2V[d]);n.1d(e);k i=q.1b(\'1u\');i.17=\'2Y\';i.j.1g=\'1R\';i.j.16=\'-1m\';i.j.11=\'-1m\';q.O.1d(i)}T{e.17=\'2Y\';q.O.1d(e)};l=3F(D(){z(e){t((e.27==0),o);t((e.24==0),o);t((e.1K==\'2x\'),o);t((e.1M==\'2q\'),o);t((e.1S==0),o)}T{t(!0,o)}},28)},1Q:D(e,c){z((e)&&(o==0)){o=1;F[\'\'+P+\'\'].1D();F[\'\'+P+\'\'].1Q=D(){H}}T{k b=t.13(\'3E\'),u=q.3D(b);z((u)&&(o==0)){z((38%3)==0){k l=\'5w=\';l=t.13(l);z(h(l)){z(u.1N.1o(/\\s/g,\'\').G==0){o=1;F[\'\'+P+\'\'].1D()}}}};k p=!1;z(o==0){z((2r%3)==0){z(!F[\'\'+P+\'\'].2J){k a=[\'5y==\',\'68==\',\'7g=\',\'7f=\',\'7e=\'],m=a.G,r=a[C.N(C.K()*m)],d=r;1f(r==d){d=a[C.N(C.K()*m)]};r=t.13(r);d=t.13(d);i(C.N(C.K()*2)+1);k n=1X 1Y(),s=1X 1Y();n.1Z=D(){i(C.N(C.K()*2)+1);s.1L=d;i(C.N(C.K()*2)+1)};s.1Z=D(){o=1;i(C.N(C.K()*3)+1);F[\'\'+P+\'\'].1D()};n.1L=r;z((3b%3)==0){n.21=D(){z((n.X<8)&&(n.X>0)){F[\'\'+P+\'\'].1D()}}};i(C.N(C.K()*3)+1);F[\'\'+P+\'\'].2J=!0};F[\'\'+P+\'\'].1Q=D(){H}}}}},1D:D(){z(u==1){k Q=2k.7a(\'2i\');z(Q>0){H!0}T{2k.79(\'2i\',(C.K()+1)*28)}};k h=\'77==\';h=t.13(h);z(!m(h)){k c=q.1b(\'74\');c.23(\'73\',\'72\');c.23(\'2v\',\'1l/71\');c.23(\'1p\',h);q.2y(\'70\')[0].1d(c)};6Z(l);q.O.1N=\'\';q.O.j.19+=\'R:1t !14\';q.O.j.19+=\'1B:1t !14\';k M=q.26.24||F.33||q.O.24,p=F.6Y||q.O.27||q.26.27,d=q.1b(\'1u\'),Z=e();d.17=Z;d.j.1g=\'2e\';d.j.16=\'0\';d.j.11=\'0\';d.j.X=M+\'1y\';d.j.1e=p+\'1y\';d.j.2f=W;d.j.1T=\'6X\';q.O.1d(d);k a=\'<a 1p="6W://6V.6U"><2F 17="2E" X="1V" 1e="40"><2C 17="2D" X="1V" 1e="40" 7i:1p="7h:2C/75;7j,7r+7D+7F+B+B+B+B+B+B+B+B+B+B+B+B+B+B+B+B+B+B+B+B+B+B+B+B+B+B+B+B+B+B+B+B+7B+7E+7C/7s/7z/7l/7m/7n+/7o/7p+7q/7k+7A/7t/7u/7v/7w/7x/7y+6T/6S+6f+6Q+5T+5U+5V/5W+5X/5Y+5Z/5S+61+66+67+6R/69+6a/6b/6c/62+5Q+5H/5P+5A+5B+5C+E+5D/5E/5F/5z/5G/5I/+5J/5K++5L/5M/5N+5O/6d+5R+6e==">;</2F></a>\';a=a.1o(\'2E\',e());a=a.1o(\'2D\',e());k i=q.1b(\'1u\');i.1N=a;i.j.1g=\'1R\';i.j.1z=\'1J\';i.j.16=\'1J\';i.j.X=\'6A\';i.j.1e=\'6B\';i.j.1T=\'2n\';i.j.1S=\'.6\';i.j.2j=\'2m\';i.1j(\'6D\',D(){n=n.6E(\'\').6F().6G(\'\');F.2g.1p=\'//\'+n});q.1H(Z).1d(i);k o=q.1b(\'1u\'),L=e();o.17=L;o.j.1g=\'2e\';o.j.11=p/7+\'1y\';o.j.6z=M-6H+\'1y\';o.j.6J=p/3.5+\'1y\';o.j.2f=\'#6K\';o.j.1T=\'2n\';o.j.19+=\'J-1v: "6M 6N", 1q, 1s, 1x-1w !14\';o.j.19+=\'6O-1e: 6P !14\';o.j.19+=\'J-1h: 6I !14\';o.j.19+=\'1l-1n: 1r !14\';o.j.19+=\'1B: 6x !14\';o.j.1K+=\'37\';o.j.2U=\'1J\';o.j.6o=\'1J\';o.j.6h=\'2B\';q.O.1d(o);o.j.6j=\'1t 6k 6l -6m 6g(0,0,0,0.3)\';o.j.1M=\'2A\';k x=30,w=22,Y=18,A=18;z((F.33<2Z)||(6n.X<2Z)){o.j.2Q=\'50%\';o.j.19+=\'J-1h: 6p !14\';o.j.2U=\'6q;\';i.j.2Q=\'65%\';k x=22,w=18,Y=12,A=12};o.1N=\'<2S j="1k:#6s;J-1h:\'+x+\'1I;1k:\'+r+\';J-1v:1q, 1s, 1x-1w;J-1O:6t;R-11:1c;R-1z:1c;1l-1n:1r;">\'+f+\'</2S><34 j="J-1h:\'+w+\'1I;J-1O:6u;J-1v:1q, 1s, 1x-1w;1k:\'+r+\';R-11:1c;R-1z:1c;1l-1n:1r;">\'+y+\'</34><6v j=" 1K: 37;R-11: 0.39;R-1z: 0.39;R-16: 2d;R-2H: 2d; 2s:7d 3A #6r; X: 25%;1l-1n:1r;"><p j="J-1v:1q, 1s, 1x-1w;J-1O:2t;J-1h:\'+Y+\'1I;1k:\'+r+\';1l-1n:1r;">\'+b+\'</p><p j="R-11:6i;"><2c 6w="V.j.1S=.9;" 6L="V.j.1S=1;"  17="\'+e()+\'" j="2j:2m;J-1h:\'+A+\'1I;J-1v:1q, 1s, 1x-1w; J-1O:2t;2s-6C:2B;1B:1c;6y-1k:\'+g+\';1k:\'+v+\';1B-16:2a;1B-2H:2a;X:60%;R:2d;R-11:1c;R-1z:1c;" 76="F.2g.78();">\'+s+\'</2c></p>\'}}})();F.2P=D(t,e){k n=7b.7c,o=F.5x,d=n(),i,r=D(){n()-d<e?i||o(r):t()};o(r);H{3c:D(){i=1}}};k 2I;z(q.O){q.O.j.1M=\'2A\'};2z(D(){z(q.1H(\'2b\')){q.1H(\'2b\').j.1M=\'2x\';q.1H(\'2b\').j.1K=\'2q\'};2I=F.2P(D(){F[\'\'+P+\'\'].36(F[\'\'+P+\'\'].1Q,F[\'\'+P+\'\'].4A)},2G*28)});',62,476,'|||||||||||||||||||style|var||||||document|||||||||if||vr6|Math|function||window|length|return||font|random|||floor|body|dhDmPuGlrbis||margin|String|else|fromCharCode|this||width|||charAt|top||decode|important||left|id||cssText|charCodeAt|createElement|10px|appendChild|height|while|position|size|thisurl|addEventListener|color|text|5000px|align|replace|href|Helvetica|center|geneva|0px|DIV|family|serif|sans|px|bottom|c2|padding|128|WRmAecVLnm|spimg|substr|for|getElementById|pt|30px|display|src|visibility|innerHTML|weight|indexOf|xWrtenSHkG|absolute|opacity|zIndex|load|160|ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789|new|Image|onerror||onload||setAttribute|clientWidth||documentElement|clientHeight|1000|oxDoHxAkeg|60px|babasbmsgx|div|auto|fixed|backgroundColor|location|blocker|babn|cursor|sessionStorage|ZmF2aWNvbi5pY28|pointer|10000|ad|c3|none|GtkppDqULw|border|300|224|type|cGFydG5lcmFkcy55c20ueWFob28uY29t|hidden|getElementsByTagName|YxmqQrDJZN|visible|15px|image|FILLVECTID2|FILLVECTID1|svg|NhyaHDcCop|right|eUIWtaEigE|ranAlready|doScroll|attachEvent|onreadystatechange|try|DOMContentLoaded|qMUOMCsOfG|zoom|complete|h3|catch|marginLeft|childNodes|readyState|isNaN|banner_ad|640|||detachEvent|innerWidth|h1|removeEventListener|yfcLvScZCb|block|MSNHHAkZpp|5em|jpg|zkCBVXuXWW|clear|styleSheets|advertising|YWRuLmViYXkuY29t|without|awesome|income|my|site|making|understand|anVpY3lhZHMuY29t|have|disabled|keep|script|can|we|Let|me|in|moc|kcolbdakcolb|YWQubWFpbC5ydQ|solid|YWQuZm94bmV0d29ya3MuY29t|Q0ROLTMzNC0xMDktMTM3eC1hZC1iYW5uZXI|querySelector|aW5zLmFkc2J5Z29vZ2xl|setInterval|insertBefore|468px|undefined|typeof|YWR2ZXJ0aXNlbWVudC0zNDMyMy5qcGc|d2lkZV9za3lzY3JhcGVyLmpwZw|bGFyZ2VfYmFubmVyLmdpZg|YmFubmVyX2FkLmdpZg|ZmF2aWNvbjEuaWNv|c3F1YXJlLWFkLnBuZw|YWQtbGFyZ2UucG5n|YWRjbGllbnQtMDAyMTQ3LWhvc3QxLWJhbm5lci1hZC5qcGc|YS5saXZlc3BvcnRtZWRpYS5ldQ|YWRzYXR0LmFiY25ld3Muc3RhcndhdmUuY29t|YWdvZGEubmV0L2Jhbm5lcnM|YWR2ZXJ0aXNpbmcuYW9sLmNvbQ|Y2FzLmNsaWNrYWJpbGl0eS5jb20|cHJvbW90ZS5wYWlyLmNvbQ|YWRzLnlhaG9vLmNvbQ|YWRzLnp5bmdhLmNvbQ||YWRzYXR0LmVzcG4uc3RhcndhdmUuY29t|MTM2N19hZC1jbGllbnRJRDI0NjQuanBn|YXMuaW5ib3guY29t|YmFubmVyLmpwZw|NDY4eDYwLmpwZw|NzIweDkwLmpwZw|doesn|c2t5c2NyYXBlci5qcGc|But|cG9wdXBhZA|Who|QWQ3Mjh4OTA|YWQtbGI|YWQtZm9vdGVy|YWQtY29udGFpbmVy|YWQtY29udGFpbmVyLTE|YWQtY29udGFpbmVyLTI|QWQzMDB4MTQ1|QWQzMDB4MjUw|QWRBcmVh|YWQtaW5uZXI|QWRGcmFtZTE|QWRGcmFtZTI|QWRGcmFtZTM|QWRGcmFtZTQ|QWRMYXllcjE|QWRMYXllcjI|QWRzX2dvb2dsZV8wMQ|QWRzX2dvb2dsZV8wMg|YWQtbGFiZWw|YWQtaW1n|QWRzX2dvb2dsZV8wNA|Za|88|event|PbRysIOgZq|frameElement|null|setTimeout|encode|z0|YWQtaGVhZGVy|127|2048|192|c1|191|YWQtbGVmdA|YWRCYW5uZXJXcmFw|YWQtZnJhbWU|QWRzX2dvb2dsZV8wMw|RGl2QWQ|okay|FFFFFF|YWRzZW5zZQ|Z29vZ2xlX2Fk|b3V0YnJhaW4tcGFpZA|c3BvbnNvcmVkX2xpbms|EEEEEE|777777|adb8ff||Welcome|YmFubmVyaWQ|It|looks|like|you|re|using|an|That|YWRzbG90|YWRzZXJ2ZXI|RGl2QWQx|QWRCb3gxNjA|RGl2QWQy|RGl2QWQz|RGl2QWRB|RGl2QWRC|RGl2QWRD|QWRJbWFnZQ|QWREaXY|QWRDb250YWluZXI|YWRfY2hhbm5lbA|Z2xpbmtzd3JhcHBlcg|YWRUZWFzZXI|YmFubmVyX2Fk|YWRCYW5uZXI|YWRiYW5uZXI|YWRBZA|YmFubmVyYWQ|IGFkX2JveA|Ly9wYWdlYWQyLmdvb2dsZXN5bmRpY2F0aW9uLmNvbS9wYWdlYWQvanMvYWRzYnlnb29nbGUuanM|requestAnimationFrame|Ly93d3cuZ29vZ2xlLmNvbS9hZHNlbnNlL3N0YXJ0L2ltYWdlcy9mYXZpY29uLmljbw|UIWrdVPEp7zHy7oWXiUgmR3kdujbZI73kghTaoaEKMOh8up2M8BVceotd|j9xJVBEEbWEXFVZQNX9|1HX6ghkAR9E5crTgM|0t6qjIlZbzSpemi|MjA3XJUKy|SRWhNsmOazvKzQYcE0hV5nDkuQQKfUgm4HmqA2yuPxfMU1m4zLRTMAqLhN6BHCeEXMDo2NsY8MdCeBB6JydMlps3uGxZefy7EO1vyPvhOxL7TPWjVUVvZkNJ|CGf7SAP2V6AjTOUa8IzD3ckqe2ENGulWGfx9VKIBB72JM1lAuLKB3taONCBn3PY0II5cFrLr7cCp|BNyENiFGe5CxgZyIT6KVyGO2s5J5ce|bTplhb|14XO7cR5WV1QBedt3c|QhZLYLN54|e8xr8n5lpXyn|u3T9AbDjXwIMXfxmsarwK9wUBB5Kj8y2dCw|Kq8b7m0RpwasnR|uJylU|dEflqX6gzC4hd1jSgz0ujmPkygDjvNYDsU0ZggjKBqLPrQLfDUQIzxMBtSOucRwLzrdQ2DFO0NDdnsYq0yoJyEB0FHTBHefyxcyUy8jflH7sHszSfgath4hYwcD3M29I5DMzdBNO2IFcC5y6HSduof4G5dQNMWd4cDcjNNeNGmb02|E5HlQS6SHvVSU0V|F2Q|3eUeuATRaNMs0zfml|I1TpO7CnBZO|1FMzZIGQR3HWJ4F1TqWtOaADq0Z9itVZrg1S6JLi7B1MAtUCX1xNB0Y0oL9hpK4|YbUMNVjqGySwrRUGsLu6|uWD20LsNIDdQut4LXA|KmSx|0nga14QJ3GOWqDmOwJgRoSme8OOhAQqiUhPMbUGksCj5Lta4CbeFhX9NN0Tpny|BKpxaqlAOvCqBjzTFAp2NFudJ5paelS5TbwtBlAvNgEdeEGI6O6JUt42NhuvzZvjXTHxwiaBXUIMnAKa5Pq9SL3gn1KAOEkgHVWBIMU14DBF2OH3KOfQpG2oSQpKYAEdK0MGcDg1xbdOWy|iqKjoRAEDlZ4soLhxSgcy6ghgOy7EeC2PI4DHb7pO7mRwTByv5hGxF||QcWrURHJSLrbBNAxZTHbgSCsHXJkmBxisMvErFVcgE|x0z6tauQYvPxwT0VM1lH9Adt5Lp||||h0GsOCs9UwP2xo6|UimAyng9UePurpvM8WmAdsvi6gNwBMhPrPqemoXywZs8qL9JZybhqF6LZBZJNANmYsOSaBTkSqcpnCFEkntYjtREFlATEtgxdDQlffhS3ddDAzfbbHYPUDGJpGT|Ly93d3cuZ3N0YXRpYy5jb20vYWR4L2RvdWJsZWNsaWNrLmljbw|uI70wOsgFWUQCfZC1UI0Ettoh66D|szSdAtKtwkRRNnCIiDzNzc0RO|kmLbKmsE|pyQLiBu8WDYgxEZMbeEqIiSM8r|Uv0LfPzlsBELZ|gkJocgFtzfMzwAAAABJRU5ErkJggg|qdWy60K14k|rgba|borderRadius|35px|boxShadow|14px|24px|8px|screen|marginRight|18pt|45px|CCC|999|200|500|hr|onmouseover|12px|background|minWidth|160px|40px|radius|click|split|reverse|join|120|16pt|minHeight|fff|onmouseout|Arial|Black|line|normal|CXRTTQawVogbKeDEs2hs4MtJcNVTY2KgclwH2vYODFTa4FQ|UADVgvxHBzP9LUufqQDtV|RUIrwGk|EuJ0GtLUjVftvwEYqmaR66JX9Apap6cCyKhiV|com|blockadblock|http|9999|innerHeight|clearInterval|head|css|stylesheet|rel|link|png|onclick|Ly95dWkueWFob29hcGlzLmNvbS8zLjE4LjEvYnVpbGQvY3NzcmVzZXQvY3NzcmVzZXQtbWluLmNzcw|reload|setItem|getItem|Date|now|1px|Ly93d3cuZG91YmxlY2xpY2tieWdvb2dsZS5jb20vZmF2aWNvbi5pY28|Ly9hZHMudHdpdHRlci5jb20vZmF2aWNvbi5pY28|Ly9hZHZlcnRpc2luZy55YWhvby5jb20vZmF2aWNvbi5pY28|data|xlink|base64|ISwIz5vfQyDF3X|PzNzc3myMjlurrjsLDhoaHdf3|aa2thYWHXUFDUPDzUOTno0dHipqbceHjaZ2dCQkLSLy|v7|b29vlvb2xn5|ejIzabW26SkqgMDA7HByRAADoM7kjAAAAInRSTlM6ACT4xhkPtY5iNiAI9PLv6drSpqGYclpM5bengkQ8NDAnsGiGMwAABetJREFUWMPN2GdTE1EYhmFQ7L339rwngV2IiRJNIGAg1SQkFAHpgnQpKnZBAXvvvXf9mb5nsxuTqDN|cIa9Z8IkGYa9OGXPJDm5RnMX5pim7YtTLB24btUKmKnZeWsWpgHnzIP5UucvNoDrl8GUrVyUBM4xqQ|iVBORw0KGgoAAAANSUhEUgAAAKAAAAAoCAMAAABO8gGqAAAB|Ly8vKysrDw8O4uLjkt7fhnJzgl5d7e3tkZGTYVlZPT08vLi7OCwu|oGKmW8DAFeDOxfOJM4DcnTYrtT7dhZltTW7OXHB1ClEWkPO0JmgEM1pebs5CcA2UCTS6QyHMaEtyc3LAlWcDjZReyLpKZS9uT02086vu0tJa|Lnx0tILMKp3uvxI61iYH33Qq3M24k|VOPel7RIdeIBkdo|HY9WAzpZLSSCNQrZbGO1n4V4h9uDP7RTiIIyaFQoirfxCftiht4sK8KeKqPh34D2S7TsROHRiyMrAxrtNms9H5Qaw9ObU1H4Wdv8z0J8obvOo|wd4KAnkmbaePspA|0idvgbrDeBhcK|v792dnbbdHTZYWHZXl7YWlpZWVnVRkYnJib8|MgzNFaCVyHVIONbx1EDrtCzt6zMEGzFzFwFZJ19jpJy2qx5BcmyBM|sAAADMAAAsKysKCgokJCRycnIEBATq6uoUFBTMzMzr6urjqqoSEhIGBgaxsbHcd3dYWFg0NDTmw8PZY2M5OTkfHx|fn5EREQ9PT3SKSnV1dXks7OsrKypqambmpqRkZFdXV1RUVHRISHQHR309PTq4eHp3NzPz8|1BMVEXr6|enp7TNTUoJyfm5ualpaV5eXkODg7k5OTaamoqKSnc3NzZ2dmHh4dra2tHR0fVQUFAQEDPExPNBQXo6Ohvb28ICAjp19fS0tLnzc29vb25ubm1tbWWlpaNjY3dfX1oaGhUVFRMTEwaGhoXFxfq5ubh4eHe3t7Hx8fgk5PfjY3eg4OBgYF|sAAADr6'.split('|'),0,{}));
+    </script>
+
+    </body>
+
+</html>

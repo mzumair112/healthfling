@@ -1,0 +1,136 @@
+<!-- selection-section starts-->
+    <div class="select_sec" ng-controller = "SearchController" >
+      <div class="container">
+          <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+          <div class="select_inr">
+            <div class="select_item" ng-class="{select_three: vm.country != 'United States' && vm.country != 'Canada' && vm.country != 'Country'}">
+              <div class="select_area">
+                  <select name="number" class="block" ng-model="vm.country" ng-options="x for x in countries" ng-change="changeStateListInCtrl(vm.country);vm.state = states[0];vm.region = regions[0];" ng-init = "changeStateListInCtrl(vm.country);">
+                  </select>
+                </div>
+              <div class="select_area" ng-show ="vm.country == 'United States' || vm.country == 'Canada' || vm.country == 'Country'">
+                  <select name="number" class="block" ng-model="vm.state" ng-options="x for x in states" ng-change="changeListInCtrl(vm.state);" ng-init = "changeListInCtrl(vm.state)">
+                  </select>
+                </div>
+                <div class="select_area">
+                  <select name="number" id="region" class="block" ng-model="vm.region" ng-options="x for x in regions" ng-init="vm.region = vm.region || 'Region'">
+                  </select>
+                </div>
+                <div class="select_area">
+                  <select name="number" id="category" class="block" ng-model="vm.category" ng-options="x for x in categories">
+                  </select>
+                </div>
+                <div class="select_sbt">
+                   <input type="submit" placeholder="Submit" ng-click ="vm.search()">
+                </div>
+                <div ng-show = "vm.savedPreference == true" class="loc_block">
+                  <a href="" ng-click="vm.unlockPreference()"><i class="fa fa-lock"></i></a>
+                </div>
+                <div ng-hide = "vm.savedPreference == true" class="unloc_block">
+                  <a href="" ng-click="vm.lockPreference()"><i class="fa fa-unlock"></i></a>
+                </div>
+            </div>
+            <div class="add_post post_bk pages_button" ng-if="windowWidth > 991 && isLoggedIn">
+                <input type="submit" value="LOG-OUT" ng-click="vm.logout()" style="background: #42a2e8; border: #f80101;">
+            </div>
+            <div class="add_post post_bk login_signup pages_button" ng-if="windowWidth > 991 && !isLoggedIn">
+              <input type="submit" value="LOG-IN/SIGN-UP" ng-click="vm.login()" style="background: #42a2e8; border: #f80101;">
+            </div>
+            <div class="add_post post_bk pages_button" ng-if="windowWidth > 991">
+              <input type="submit" value="PAGES" ng-click="vm.pages()" style="background: #f80101; border: #f80101;">
+            </div>
+
+            <div class="add_post post_bk">
+              <input type="submit" value="Post an AD" ng-click="vm.post()">
+            </div>
+            <div class="add_post post_bk pages_button" ng-if="windowWidth < 991">
+              <input type="submit" value="PAGES" ng-click="vm.pages()" style="background: #f80101; border: #f80101;">
+            </div>
+            <div class="add_post post_bk login_signup pages_button" ng-if="windowWidth < 991 && !isLoggedIn">
+              <input type="submit" value="LOG-IN/SIGN-UP" ng-click="vm.login()" style="background: #42a2e8; border: #f80101;">
+            </div>
+            <div class="add_post post_bk pages_button" ng-if="windowWidth < 991 && isLoggedIn">
+                <input type="submit" value="LOG-OUT" ng-click="vm.logout()" style="background: #42a2e8; border: #f80101;">
+            </div>
+          </div>
+      </div>
+    </div>
+    <!-- selection-section ends-->
+
+<section class="" ng-controller="SearchController" ng-init = "initController();">
+  <div class="container" ng-controller="AdsController">
+      <div class="bread_cnt">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="" ng-click="vm.searchFilter(vm.country,'State','Region','Category')">{{vm.country}}</a></li>
+            <li class="breadcrumb-item" ng-if ="vm.state && (vm.country == 'United States' || vm.country == 'Canada' || vm.country == 'Country')"><a href="" ng-click="vm.searchFilter(vm.country,vm.state,'Region','Category')">{{vm.state}}</a></li>
+            <li class="breadcrumb-item"><a href="" ng-click="vm.searchFilter(vm.country,vm.state,vm.region,'Category')">{{vm.region}}</a></li>
+             <li class="breadcrumb-item"><a href="" ng-click="vm.searchFilter(vm.country,vm.state,vm.region,vm.category)">{{vm.category}}</a></li>
+          </ol>
+      </div>
+      <div class="page_hdr">
+        <div class="add_hdr">
+            <h2 ng-hide="data" style="font-weight: normal;font-size: 14px;">Showing page 0 of 0</h2>
+            <h2 ng-show="data" style="font-weight: normal;font-size: 14px;">Showing page {{vm.currentPage+1}} of {{data.length/vm.pageSize | roundup}}</h2>
+        </div>
+        <div class="total_post">
+            <p>[{{vm.currentPage * vm.pageSize + 1}}-{{data.length}}]</p>
+        </div>
+        <div class="total_post">
+            <p>{{data.length}} active posts</p>
+        </div>
+      </div>
+
+      <div class="expanding">
+        <p>Fun Fact: <a href="" ng-click="vm.searchAll()">Click here</a> to view all the posts on the site</p>
+      </div>
+
+      <div class="blog_slider blog_slider_search">
+          <button ng-disabled="vm.currentPage == 0" ng-click="vm.prevPage();" class="nav_btn prev">
+          < Previous
+        </button>
+          <button ng-disabled="vm.currentPage >= data.length/vm.pageSize - 1" ng-click="vm.nextPage();" class="nav_btn">
+                Next >
+          </button>
+      </div>
+      <div class="add_cnt">
+        <div ng-show="data">
+            <ul style="padding-top: 0px;">
+                <li ng-repeat="item in data | startFrom: vm.currentPage * vm.pageSize | limitTo: vm.pageSize" class="clearfix">
+                    <a href="detail/{{item['_id']}}" class="result-image gallery"><img class="thumb" src="{{item.files[0].secure_url || 'https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png'}}" onError="this.src='https://www.healthyfling.com/processed/default-52adc3dc03639885e8aa93763e29868269dd3b9dad4689f140c0175b4f945922.png';" alt="" />
+                    </a>
+                    <div class="text_right">
+                      <!-- <p><h5 ng-if="item.status == 'flagged'">This post has been flagged for review</h5><p> -->
+                      <p><h4><a href="detail/{{item['_id']}}" >{{item.title || item.body}}<span ng-if="item.location || item.age ">- </span><span ng-if="item.age">{{item.age}}</span><span ng-if="item.location"> ({{item.location}})</span></a></h4><p>
+                      <p><time am-time-ago="item.created"></time></p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+         <div ng-hide="data">
+            <h3 style="margin-bottom: 30px;">No record found!</h3>
+        </div>
+        <div class="blog_slider">
+          <button ng-disabled="vm.currentPage == 0" ng-click="vm.prevPage();" class="nav_btn prev">
+            < Previous
+            </button>
+            <button ng-disabled="vm.currentPage >= data.length/vm.pageSize - 1" ng-click="vm.nextPage();" class="nav_btn">
+                Next >
+            </button>
+        </div>
+      </div>
+      <div ng-show = "windowWidth >= 752">
+        <!-- JuicyAds v3.0 -->
+        <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+        <ins id="820410" data-width="728" data-height="102"></ins>
+        <script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':820410});</script>
+        <!--JuicyAds END-->
+      </div>
+      <div ng-show = "windowWidth < 752">
+         <!-- JuicyAds v3.0 -->
+         <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+         <ins id="820411" data-width="300" data-height="62"></ins>
+         <script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':820411});</script>
+        <!--JuicyAds END-->
+      </div>
+  </div>
+</section>
